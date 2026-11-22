@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>TEACH｜Blue Rain 課程教學誌</title>
-<meta name="description" content="Blue Rain 課程教學網站：國立臺北商業大學 數位多媒體設計系的角色造型設計、影片後製作、設計概論。">
+<meta name="description" content="Blue Rain 課程教學網站：國立臺北商業大學 數位多媒體設計系的角色造型設計、影片後製作、設計概論，以及軟體技法圖鑑「作品藏技法」。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+TC:wght@400;600;900&display=swap" rel="stylesheet">
@@ -73,6 +73,8 @@ body.ready #loader{opacity:0;visibility:hidden}
 .t-mustard{background:var(--mustard)}
 .t-blue{background:var(--blue);color:#f6f0e4}
 .t-green{background:var(--green)}
+.t-brick{background:var(--brick);color:#f6f0e4}
+.t-brick .cta:hover{background:#f6f0e4;color:var(--brick);border-color:#f6f0e4}
 .t-back{background:var(--ink);color:#efe6d6}
 .t-blue .cta:hover{background:#f6f0e4;color:var(--blue);border-color:#f6f0e4}
 .t-back .cta:hover{background:#efe6d6;color:var(--ink)}
@@ -92,14 +94,14 @@ body.ready #loader{opacity:0;visibility:hidden}
 /* index spread */
 .idx{display:block}
 .idx .txt{padding-bottom:40px;justify-content:flex-start;padding-top:clamp(90px,14vh,140px)}
-.toc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,28px);margin-top:36px;max-width:1100px}
+.toc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(14px,2vw,28px);margin-top:36px;max-width:1100px}
 .toc button{text-align:left;display:flex;flex-direction:column;gap:10px}
 .toc .thumb{height:min(36vh,330px);border-radius:2px;position:relative;overflow:hidden;box-shadow:0 1px 0 rgba(0,0,0,.08);transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s}
 .toc button:hover .thumb{transform:translateY(-8px) rotate(-1.2deg);box-shadow:10px 14px 0 rgba(36,26,21,.9)}
 .toc .thumb svg{position:absolute;inset:0;width:100%;height:100%}
 .toc{margin-top:28px}
 .toc .thumb em{position:absolute;left:14px;top:10px;font:300 italic 44px/1 var(--latin);color:rgba(36,26,21,.75)}
-.toc .thumb.blue em{color:rgba(246,240,228,.85)}
+.toc .thumb.blue em,.toc .thumb.brick em{color:rgba(246,240,228,.85)}
 .toc strong{font:400 clamp(20px,2vw,28px)/1.1 var(--latin)}
 .toc span{font:600 13px/1.4 var(--serif);letter-spacing:.2em}
 .toc .st{font:400 11px/1 var(--serif);letter-spacing:.14em;border:1px solid var(--ink);border-radius:99px;padding:4px 9px;align-self:flex-start}
@@ -141,7 +143,7 @@ body[data-dark="1"] .top,body[data-dark="1"] .bar{color:#f2ead9}
   .p{font-size:14px;line-height:1.9;margin-top:16px}
   .tags{margin-top:16px;font-size:15px}
   .cta{margin-top:22px}
-  .toc{grid-template-columns:repeat(3,1fr);gap:10px}.toc .thumb{height:26vh}
+  .toc{grid-template-columns:repeat(2,1fr);gap:10px}.toc .thumb{height:15vh}
   .toc strong{font-size:15px}.toc span{font-size:11px;letter-spacing:.1em}.toc .st{display:none}
   .chap-no{bottom:76px;font-size:130px}
   .dots,.chapname{display:none}
@@ -221,6 +223,9 @@ body[data-dark="1"] .top,body[data-dark="1"] .bar{color:#f2ead9}
         <button data-go="4"><div class="thumb" style="background:#8fa58a"><em>03</em>
           <svg viewBox="0 0 200 250" aria-hidden="true"><circle cx="80" cy="120" r="34" fill="#b5523b"/><rect x="100" y="120" width="60" height="60" fill="#241a15"/><path d="M60 210 l40 -70 l40 70z" fill="#f6f0e4"/></svg></div>
           <strong>Intro to Design</strong><span>設計概論</span><span class="st">準備中</span></button>
+        <button data-go="5"><div class="thumb brick" style="background:#b5523b"><em>04</em>
+          <svg viewBox="0 0 200 250" aria-hidden="true"><rect x="38" y="70" width="56" height="78" rx="3" fill="#f6f0e4"/><rect x="106" y="70" width="56" height="78" rx="3" fill="#e6aa35"/><rect x="38" y="160" width="56" height="78" rx="3" fill="#2c3e9e"/><rect x="106" y="160" width="56" height="78" rx="3" fill="#f6f0e4" stroke="#241a15" stroke-width="2" stroke-dasharray="5 4"/><path d="M52 128 c10-30 26 10 30-26" stroke="#b5523b" stroke-width="5" fill="none" stroke-linecap="round"/></svg></div>
+          <strong>Skill Atlas</strong><span>作品藏技法</span><span class="st on">上線中</span></button>
       </div>
     </div>
   </section>
@@ -318,7 +323,35 @@ body[data-dark="1"] .top,body[data-dark="1"] .bar{color:#f2ead9}
     <span class="chap-no" aria-hidden="true">03</span>
   </section>
 
-  <!-- 5 BACK COVER -->
+  <!-- 5 SKILL ATLAS -->
+  <section class="spread t-brick" data-name="作品藏技法" data-dark="1" aria-label="04 作品藏技法">
+    <div class="txt">
+      <p class="kicker"><b>04</b>Chapter · Software</p>
+      <h2 class="h">Skill<br>Atlas<small>作品藏技法</small></h2>
+      <p class="p">每一張作品都藏著一個技法。先看圖、讀提示，自己動手做出來；卡關了再看完整教學。Illustrator、Photoshop、InDesign、After Effects、Premiere Pro，一張卡片一個技法。</p>
+      <ul class="tags"><li>Ai</li><li>Ps</li><li>Id</li><li>Ae</li><li>Pr</li></ul>
+      <a class="cta" href="skill-atlas/">進入技法圖鑑 <span aria-hidden="true">⟶</span></a>
+    </div>
+    <div class="art">
+      <div class="layer" data-depth="12"><svg viewBox="0 0 800 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <rect class="pop" x="150" y="170" width="200" height="280" fill="#f6f0e4" transform="rotate(-6 250 310)"/>
+        <rect class="pop" x="390" y="150" width="200" height="280" fill="#e6aa35" transform="rotate(4 490 290)"/>
+        <rect class="pop" x="230" y="480" width="200" height="280" fill="#2c3e9e" transform="rotate(3 330 620)"/>
+      </svg></div>
+      <div class="layer" data-depth="28"><svg viewBox="0 0 800 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g class="pop" fill="none" stroke-linecap="round"><path d="M190 380 c30-120 70 40 110-90" stroke="#b5523b" stroke-width="14"/><path d="M190 380 c30-120 70 40 110-90" stroke="#f6f0e4" stroke-width="5"/></g>
+        <g class="pop" font-family="Crimson Pro,serif" font-size="120" font-weight="600"><text x="420" y="330" fill="#241a15">Ai</text><text x="262" y="680" fill="#f6f0e4">Ps</text></g>
+        <rect class="pop" x="470" y="500" width="200" height="280" fill="none" stroke="#f6f0e4" stroke-width="3" stroke-dasharray="10 8" transform="rotate(-3 570 640)"/>
+      </svg></div>
+      <div class="layer" data-depth="46"><svg viewBox="0 0 800 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <g class="pop" transform="rotate(-38 640 640)"><rect x="560" y="628" width="190" height="24" fill="#f6f0e4" stroke="#241a15" stroke-width="3"/><path d="M560 628 l-32 12 l32 12z" fill="#e6aa35" stroke="#241a15" stroke-width="3"/></g>
+        <circle class="pop" cx="680" cy="190" r="34" fill="#8fa58a"/>
+      </svg></div>
+    </div>
+    <span class="chap-no" aria-hidden="true">04</span>
+  </section>
+
+  <!-- 6 BACK COVER -->
   <section class="spread back t-back" data-name="封底" data-dark="1" aria-label="封底">
     <div class="txt">
       <p class="kicker"><b>—</b>Colophon</p>
@@ -343,7 +376,7 @@ body[data-dark="1"] .top,body[data-dark="1"] .bar{color:#f2ead9}
 <footer class="bar">
   <div class="pager">
     <button id="prev" aria-label="上一頁">⟵</button>
-    <span class="count" id="count">01 / 06</span>
+    <span class="count" id="count">01 / 07</span>
     <button id="next" aria-label="下一頁">⟶</button>
   </div>
   <div class="dots" id="dots" role="tablist" aria-label="頁面"></div>
@@ -357,7 +390,8 @@ body[data-dark="1"] .top,body[data-dark="1"] .bar{color:#f2ead9}
     <li><button data-go="2"><em>01</em>Character Design<span>角色造型設計</span></button></li>
     <li><button data-go="3"><em>02</em>Video Post-production<span>影片後製作</span></button></li>
     <li><button data-go="4"><em>03</em>Intro to Design<span>設計概論</span></button></li>
-    <li><button data-go="5"><em>—</em>Colophon<span>封底・聯絡</span></button></li>
+    <li><button data-go="5"><em>04</em>Skill Atlas<span>作品藏技法</span></button></li>
+    <li><button data-go="6"><em>—</em>Colophon<span>封底・聯絡</span></button></li>
   </ol>
 </nav>
 

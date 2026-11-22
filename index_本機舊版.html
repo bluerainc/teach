@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TEACH｜Blue Rain 教學網站</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;1,300&family=Noto+Serif+TC:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--mustard:#e8ae3c;--paper:#fbf7ef;--ink:#291c16;--ink-2:#594d47}
+*{box-sizing:border-box}
+body{margin:0;min-height:100svh;display:flex;flex-direction:column;background:var(--mustard);color:var(--ink);font:400 15px/1.9 "Noto Serif TC",serif;letter-spacing:.06em;position:relative}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;opacity:.35;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55  0 0 0 0 .42  0 0 0 0 .2  0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+header,footer{padding:24px clamp(16px,3vw,40px);font:400 13px/1 "Crimson Pro",serif;letter-spacing:.2em;display:flex;justify-content:space-between}
+header a{text-decoration:none;color:inherit}
+main{flex:1;padding:0 clamp(16px,3vw,40px);display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,6vw,90px);align-items:end}
+.vert{writing-mode:vertical-rl;font:600 clamp(24px,3vw,38px)/1.5 "Noto Serif TC",serif;letter-spacing:.32em;margin:6vh 0 0;align-self:start}
+h1{margin:0;font:400 clamp(72px,14vw,200px)/.9 "Crimson Pro",serif;letter-spacing:.02em}
+h1 small{display:block;font:600 clamp(14px,1.4vw,18px)/1.8 "Noto Serif TC",serif;letter-spacing:.3em;margin-top:.8em}
+ul{list-style:none;margin:6vh 0 0;padding:0;border-top:1px solid var(--ink)}
+li{border-bottom:1px solid var(--ink)}
+li a,li div{display:grid;grid-template-columns:5em 1fr auto;gap:8px 20px;align-items:baseline;padding:22px 0;text-decoration:none;color:inherit}
+.no{font:300 italic 22px/1 "Crimson Pro",serif}
+strong{font:400 clamp(28px,4vw,48px)/1.15 "Crimson Pro","Noto Serif TC",serif}
+strong span{display:block;font:600 15px/1.6 "Noto Serif TC",serif;letter-spacing:.2em;margin-top:6px}
+.st{font-size:12px;letter-spacing:.14em;border:1px solid var(--ink);border-radius:99px;padding:3px 10px}
+li a .st{background:var(--ink);color:var(--paper)}
+li a:hover strong{font-style:italic;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:8px}
+li div{opacity:.55}
+@media (max-width:700px){main{grid-template-columns:1fr}.vert{writing-mode:horizontal-tb;letter-spacing:.2em;font-size:20px}li a,li div{grid-template-columns:3em 1fr}.st{grid-column:2}}
+</style>
+</head>
+<body>
+<header><span>BLUE RAIN · TEACH</span><a href="https://bluerainc.github.io/NTUB/">NTUB →</a></header>
+<main>
+  <p class="vert">畫給故事的人</p>
+  <div>
+    <h1>Teach<small>課程教學網站 · 國立臺北商業大學 數位多媒體設計系</small></h1>
+    <ul>
+      <li><a href="character-design/"><span class="no">01</span><strong>Character Design<span>角色造型設計</span></strong><span class="st">上線中</span></a></li>
+      <li><div><span class="no">02</span><strong>Video Post-production<span>影片後製作</span></strong><span class="st">準備中</span></div></li>
+      <li><div><span class="no">03</span><strong>Introduction to Design<span>設計概論</span></strong><span class="st">準備中</span></div></li>
+    </ul>
+  </div>
+</main>
+<footer><span>© BLUE RAIN</span><span>bluerain@ntut.edu.tw</span></footer>
+</body>
+</html>

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>角色造型設計｜Character Design — 北商大數媒系</title>
-<meta name="description" content="國立臺北商業大學 數位多媒體設計系「角色造型設計」課程教學網站：造型語言、比例與表情、五官與姿態、動勢與手勢、色彩、服飾道具、世界觀延伸與角色設定集。">
+<meta name="description" content="國立臺北商業大學 數位多媒體設計系「角色造型設計」課程教學網站：造型語言、比例與表情、五官與姿態、動勢與手勢、角色發想與資料查找、圖解講義，以及期中競賽投稿與期末集合式角色海報專題。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
@@ -154,6 +154,81 @@ section{padding:clamp(70px,10vw,130px) 0}
 .tool ul{margin:0;padding-left:1.1em;font-size:13px;line-height:1.9}
 .tool .go{margin-top:auto;font:italic 400 14px/1 var(--latin);letter-spacing:.14em}
 
+
+/* ---------- GALLERY (圖解講義) ---------- */
+#gallery{background:var(--cream)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:48px 0 30px}
+.chip{font:400 13px/1 var(--serif);letter-spacing:.12em;padding:10px 18px;border:1px solid var(--ink);border-radius:99px;background:transparent;cursor:pointer;color:var(--ink)}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+.gal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:34px 26px}
+.gitem{display:flex;flex-direction:column;gap:9px;text-align:left;background:none;border:0;padding:0;cursor:zoom-in;color:inherit;font:inherit}
+.gitem .im{border:1px solid var(--line);background:var(--paper);overflow:hidden;transition:transform .25s,box-shadow .25s}
+.gitem:hover .im,.gitem:focus-visible .im{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--ink)}
+.gitem img{width:100%;height:auto;display:block}
+.gitem .wk{font:italic 300 13px/1 var(--latin);letter-spacing:.16em;color:var(--ink-2)}
+.gitem .wk em{font-style:normal;font:400 11px/1 var(--serif);letter-spacing:.08em;margin-left:10px;padding:3px 8px;border:1px solid var(--ink-2);border-radius:99px}
+.gitem h3{margin:0;font-size:16px;letter-spacing:.1em;line-height:1.5}
+.gitem p{margin:0;font-size:13px;line-height:1.8;color:var(--ink-2)}
+.gitem[hidden]{display:none}
+.alt{margin-top:48px;border-top:1px solid var(--line)}
+.alt summary{cursor:pointer;padding:20px 0;font-size:14px;letter-spacing:.14em;list-style:none}
+.alt summary::-webkit-details-marker{display:none}
+.alt summary::after{content:" +";font-family:var(--latin);font-size:20px}
+.alt[open] summary::after{content:" −"}
+.galnote{margin-top:30px;font-size:13px;color:var(--ink-2)}
+.figrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:6px}
+.fig{display:flex;flex-direction:column;gap:6px;background:none;border:0;padding:0;text-align:left;cursor:zoom-in;color:inherit;font:inherit}
+.fig .im{border:1px solid var(--line);background:var(--paper);overflow:hidden}
+.fig img{width:100%;height:auto;display:block}
+.fig span{font-size:12px;letter-spacing:.08em;color:var(--ink-2);line-height:1.6}
+.fig:hover span{text-decoration:underline;text-underline-offset:4px}
+.lb{position:fixed;inset:0;z-index:100;background:rgba(41,28,22,.94);display:grid;grid-template-rows:minmax(0,1fr) auto;gap:12px;padding:56px 64px 18px}
+.lb[hidden]{display:none}
+.lb .box{display:grid;place-items:center;min-height:0}
+.lb img{max-width:100%;max-height:100%;object-fit:contain;background:#fff}
+.lb .cap{color:#f4ecdc;font-size:14px;text-align:center;letter-spacing:.08em;line-height:1.7}
+.lb .cap small{display:block;color:#bfb3a3;font-size:12px}
+.lb button{position:absolute;background:rgba(244,236,220,.14);color:#f4ecdc;border:1px solid rgba(244,236,220,.5);border-radius:50%;width:44px;height:44px;font:300 26px/1 var(--latin);cursor:pointer}
+.lb button:hover{background:rgba(244,236,220,.3)}
+.lb .x{top:10px;right:14px}.lb .pv{left:12px;top:50%}.lb .nx{right:12px;top:50%}
+
+/* ---------- PROJECTS (期中・期末) ---------- */
+#projects{background:var(--paper)}
+.proj{margin-top:64px;padding-top:34px;border-top:1px solid var(--line)}
+.proj:first-of-type{margin-top:56px}
+.phead{display:grid;grid-template-columns:140px 1fr;gap:24px;align-items:start;margin-bottom:20px}
+.phead .pk{font:300 italic 16px/1.6 var(--latin);letter-spacing:.2em;color:var(--mustard-d)}
+.phead h3{margin:0;font-size:24px;letter-spacing:.1em;line-height:1.5}
+.phead h3 small{display:block;font:400 13px/1.6 var(--serif);color:var(--ink-2);margin-top:4px;letter-spacing:.1em}
+.pbody{padding-left:164px}
+.pbody h4.sub{margin:34px 0 8px;font-size:13px;letter-spacing:.2em;color:var(--ink-2);font-weight:600}
+.contests{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:20px 0 8px}
+.contest{border:1px solid var(--line);background:var(--paper);padding:22px 22px 20px;display:flex;flex-direction:column;gap:10px}
+.contest .ck{font:italic 300 13px/1 var(--latin);letter-spacing:.18em;color:var(--ink-2);display:flex;justify-content:space-between;align-items:center}
+.status{font:400 11px/1 var(--serif);letter-spacing:.1em;padding:4px 9px;border-radius:99px;border:1px solid var(--ink)}
+.status.open{background:var(--mustard)}
+.status.closed{background:var(--ink);color:var(--paper)}
+.contest h4{margin:0;font-size:19px;line-height:1.5;letter-spacing:.08em}
+.contest h4 small{display:block;font-size:12.5px;font-weight:400;color:var(--ink-2);letter-spacing:.08em}
+.contest dl{margin:0;display:grid;grid-template-columns:4.5em 1fr;font-size:13px;line-height:1.8;color:var(--ink-2)}
+.contest dt,.contest dd{margin:0;border-bottom:1px solid #d9cfbd;padding:3px 0}
+.contest .go{margin-top:auto;font:italic 400 14px/1 var(--latin);letter-spacing:.14em;text-decoration:none;padding-top:6px}
+.contest .go:hover{font-style:normal}
+.themes{list-style:none;margin:20px 0 8px;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.themes li{border:1px solid var(--line);padding:14px 14px 16px;background:var(--paper)}
+.themes b{display:block;font:300 italic 24px/1 var(--latin);color:var(--mustard-d)}
+.themes h4{margin:8px 0 6px;font-size:15px;letter-spacing:.06em;line-height:1.5}
+.themes p{margin:0;font-size:12.5px;line-height:1.8;color:var(--ink-2)}
+.roles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:20px 0 8px}
+.role{background:var(--cream);padding:20px 22px}
+.role h4{margin:0 0 6px;font-size:17px;letter-spacing:.1em}
+.role h4 small{font-size:12px;color:var(--ink-2);letter-spacing:.1em;margin-left:8px;font-weight:400}
+.role .keys li{font-size:14px}
+.pbody .ratio td:first-child{font-family:var(--serif);font-size:14px;white-space:normal}
+.pbody .ratio.tl td:first-child{font-family:var(--latin);font-size:16px;white-space:nowrap}
+.sched .proj{margin-top:6px;padding:0}
+.sched .proj b{background:var(--mustard);padding:2px 9px;border-radius:99px;font-size:11px;letter-spacing:.1em;color:var(--ink);font-weight:600;margin-right:6px}
+
 /* ---------- FOOTER ---------- */
 footer{background:var(--ink);color:#e9e1d4;padding:80px 0 50px}
 footer .row{display:grid;grid-template-columns:1fr 1fr;gap:40px}
@@ -184,6 +259,13 @@ footer .copy{margin-top:60px;font:400 11px/1.6 var(--latin);letter-spacing:.16em
   .sh{grid-template-columns:1fr;gap:18px}
   .goals,.tools{grid-template-columns:1fr}
   .cards{grid-template-columns:1fr}
+  .gal{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .phead{grid-template-columns:1fr;gap:6px}
+  .pbody{padding-left:0}
+  .contests,.roles{grid-template-columns:1fr}
+  .themes{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .lb{padding:56px 12px 14px}
+  .lb .pv,.lb .nx{top:auto;bottom:70px}
   .lab{grid-template-columns:1fr}
   .ubody{grid-template-columns:1fr;padding-left:0}
   .unit summary{grid-template-columns:84px 1fr auto}
@@ -194,6 +276,7 @@ footer .copy{margin-top:60px;font:400 11px/1.6 var(--latin);letter-spacing:.16em
   .hero svg.scene{margin-top:4vh}
 }
 @media (max-width:560px){
+  .gal,.figrow{grid-template-columns:1fr}
   .card{grid-template-columns:1fr 96px}
   .sched li{grid-template-columns:76px 1fr}
   .sched .k{display:none}
@@ -329,7 +412,7 @@ footer .copy{margin-top:60px;font:400 11px/1.6 var(--latin);letter-spacing:.16em
   <div class="wrap">
     <div class="sh rv">
       <h2>LESSONS<small>課程單元</small></h2>
-      <p class="lead">九個單元依課程進度推進。標示「已上課」的單元可點進去看重點整理、課堂練習與作業；「準備中」的單元會隨進度陸續更新。</p>
+      <p class="lead">九個單元加 1 個補充單元（S1）依課程進度推進。標示「已上課」的單元可點進去看重點整理、課堂練習與作業；「準備中」的單元會隨進度陸續更新。圖解講義集中在 <a href="#gallery">GALLERY</a>，期中與期末作業在 <a href="#projects">PROJECTS</a>。</p>
     </div>
     <div class="cards" id="cardlist"></div>
   </div>
@@ -408,6 +491,14 @@ footer .copy{margin-top:60px;font:400 11px/1.6 var(--latin);letter-spacing:.16em
             </ol>
             <div class="tip"><b>卡關兩步驟</b>　先畫「有點」程度的表情，掌握最細微的五官變化；再依強度加深。畫不出來就找正臉參考，拆解五官公式後填回作品。互換作品、遮住標籤盲猜表情，猜不出來代表公式還不夠清楚。</div>
           </div>
+          <div class="full">
+            <h4>圖解（點圖放大）</h4>
+            <div class="figrow">
+              <button type="button" class="fig" data-img="head-ratio"><span class="im"><img src="img/web/head-ratio-s.webp" width="720" height="405" alt="全身比例與頭身比" loading="lazy" decoding="async"></span><span>全身比例與頭身比</span></button>
+              <button type="button" class="fig" data-img="face-hand-foot"><span class="im"><img src="img/web/face-hand-foot-s.webp" width="720" height="405" alt="局部比例：臉、手、頭與腳" loading="lazy" decoding="async"></span><span>局部比例：臉、手、頭與腳</span></button>
+              <button type="button" class="fig" data-img="shoulder-torso"><span class="im"><img src="img/web/shoulder-torso-s.webp" width="720" height="405" alt="肩寬與軀幹比例" loading="lazy" decoding="async"></span><span>肩寬與軀幹比例</span></button>
+            </div>
+          </div>
         </div>
       </details>
 
@@ -482,7 +573,64 @@ footer .copy{margin-top:60px;font:400 11px/1.6 var(--latin);letter-spacing:.16em
               <li>視角練習：同一姿勢放進方盒，畫正面、三分之四、仰視或俯視各一張。</li>
               <li>角色化：挑一張鷹架加上體積、手腳與五官，標出重心與支撐腿。</li>
             </ol>
-            <div class="hw"><b>作業</b>　以上週兩項競賽主題擇一，構思想傳達的意象或氛圍，設計主角個性並作為畫面主題。課後每天 3–5 張 2 分鐘參考速寫。</div>
+            <div class="hw"><b>作業</b>　以兩項競賽主題擇一（或自行找插畫競賽），構思想傳達的意象或氛圍，設計主角個性並作為畫面主題，詳見 <a href="#midterm">期中作業</a>。課後每天 3–5 張 2 分鐘參考速寫。</div>
+          </div>
+          <div class="full">
+            <h4>圖解（點圖放大）</h4>
+            <div class="figrow">
+              <button type="button" class="fig" data-img="gesture-line"><span class="im"><img src="img/web/gesture-line-s.webp" width="720" height="405" alt="人體建構：從幾何形開始" loading="lazy" decoding="async"></span><span>人體建構：從幾何形開始</span></button>
+              <button type="button" class="fig" data-img="gesture-to-pose"><span class="im"><img src="img/web/gesture-to-pose-s.webp" width="720" height="405" alt="人體建構的繪製步驟" loading="lazy" decoding="async"></span><span>人體建構的繪製步驟</span></button>
+              <button type="button" class="fig" data-img="perspective"><span class="im"><img src="img/web/perspective-s.webp" width="720" height="480" alt="視角改變比例的視覺效果" loading="lazy" decoding="async"></span><span>視角改變比例的視覺效果</span></button>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <details class="unit rv" id="u06">
+        <summary><span class="wk">補充<b>S1</b></span><h3>角色發想與資料查找<small>Character Ideation &amp; Research</small></h3></summary>
+        <div class="ubody">
+          <div>
+            <h4>發想流程（五階段）</h4>
+            <ol class="steps">
+              <li><b>定義任務</b>：角色是為誰設計、用在哪裡。</li>
+              <li><b>關鍵字提問</b>：用「五問」把一句話故事拆成可查的詞。</li>
+              <li><b>資料查找</b>：第一手、第二手、視覺參考三層都要有。</li>
+              <li><b>視覺發想</b>：情緒板與剪影縮圖。</li>
+              <li><b>收斂定稿</b>：定出錨定特徵與造型表。</li>
+            </ol>
+            <ul class="keys">
+              <li><b>五問</b>：角色是誰、在哪裡、想要什麼、害怕什麼、為何與眾不同？延續第 2 週的關鍵字方法。</li>
+              <li>關鍵字要具體可查。「可愛」「帥氣」查不到東西，改成像「九降風」「曬柿」這種詞。</li>
+            </ul>
+          </div>
+          <div>
+            <h4>資料查找</h4>
+            <ul class="keys">
+              <li><b>第一手</b>：田野觀察、訪談、實物拍攝、博物館。</li>
+              <li><b>第二手</b>：書籍、論文、紀錄片、官方資料。</li>
+              <li><b>視覺參考</b>：實景照、工藝與服飾圖鑑。</li>
+              <li><b>技巧</b>：中英文、俗稱、學名、年代交叉搜尋；圖片反搜找源頭；善用 Google Scholar、國家圖書館與博物館典藏庫；向專家與在地人請教。</li>
+              <li>把資料轉成形狀、色彩、材質、配件、動作；每個設計決定都要能回答「來自哪一筆資料」，並記錄出處（「資料→設計」對照表）。</li>
+            </ul>
+          </div>
+          <div class="full">
+            <h4>案例賞析</h4>
+            <ul class="keys">
+              <li><b>現有案例｜迪士尼《海洋奇緣》Maui</b>：導演 Musker 與 Clements 自 2011 年起赴大溪地、斐濟、薩摩亞等地田野調查，並組成 Oceanic Story Trust（長老、考古學家、語言學家、刺青師、航海者）全程給回饋。Maui 早期草圖是光頭，顧問指出長髮是他神力 mana 的來源，才改成濃密長髮；刺青參考薩摩亞酋長的紋身；Moana 頭飾上的紅色鸚鵡羽毛，紅色代表王室、羽毛曾是貨幣。重點：資料不是限制創意，而是讓創意站得住腳。</li>
+              <li><b>虛構案例｜新埔柿餅吉祥物「柿柿」</b>（教學用，非現有角色）：①任務是為新埔柿餅文化節設計吉祥物，關鍵字有九降風、曬、金黃、Q 韌、孝親、客家；②查找農會資料（旱坑里柿餅加工約 170 年、文化節自民國 87 年起、10 至 12 月產季）、走訪曬柿場、客家花布；③轉譯成設計：金橘色圓潤扁橢圓體、柿霜＝白色粉感腮紅、柿蒂＝帽子、九降風＝飄動的圍巾；④錨定特徵：柿蒂帽、柿霜腮紅、花布圍巾；⑤拿草圖請柿農與在地長輩檢驗。</li>
+            </ul>
+          </div>
+          <div class="full">
+            <h4>課堂練習</h4>
+            <ol class="steps">
+              <li>寫角色任務書（五問＋一句話故事），圈出 5 至 8 個具體可查的關鍵字。</li>
+              <li>資料查找：第一手、第二手、視覺參考至少各一筆，完成「資料→設計」對照表並標註出處。</li>
+              <li>用第 2 週的形狀語言畫 10 個剪影縮圖，搭配情緒板，挑出 3 個最有潛力的。</li>
+              <li>選定 1 個，標出 3 個錨定特徵與一個代表姿態。</li>
+            </ol>
+            <div class="tip"><b>兩個檢核</b>　<b>可追溯測試</b>：任選一個設計細節，說得出來自哪一筆資料；說不出來的部分就是「憑感覺」。<b>文化尊重檢核</b>：角色是否誤用、簡化或消費了某個文化符號（取材民俗、宗教或原住民文化時尤其要做）。</div>
+            <div class="hw"><b>作業</b>　整理成一頁「角色開發提案」：任務書、資料→設計對照表、情緒板、3 個剪影。可直接用在 <a href="#midterm">期中作業</a> 與 <a href="#final">期末專題</a>。</div>
+            <p class="src">資料來源：<a href="https://www.northwestern.edu/magazine/winter2016/feature/the-man-behind-the-magic-disney-director-john-musker-moana_print.html" target="_blank" rel="noopener">Northwestern Magazine：導演 John Musker 專訪</a>・<a href="https://en.wikipedia.org/wiki/Maui_(Moana)" target="_blank" rel="noopener">Wikipedia：Maui (Moana)</a>・<a href="https://www-old.laughingplace.com/w/articles/2016/11/02/seeking-cultural-authenticity-disneys-moana/" target="_blank" rel="noopener">Laughing Place：Seeking Cultural Authenticity</a>・<a href="https://graphicmama.com/blog/character-design-process/" target="_blank" rel="noopener">GraphicMama：Character Design Process</a>・<a href="https://kmweb.moa.gov.tw/redirect_files.php?id=161981" target="_blank" rel="noopener">農業知識入口網：新埔柿餅專文</a></p>
           </div>
         </div>
       </details>
@@ -519,10 +667,39 @@ footer .copy{margin-top:60px;font:400 11px/1.6 var(--latin);letter-spacing:.16em
           <div class="full">
             <div class="hw"><b>作業</b>　「我沒事」必做 3 張＋6 種手勢各 2 張。</div>
           </div>
+          <div class="full">
+            <h4>圖解（點圖放大）</h4>
+            <div class="figrow">
+              <button type="button" class="fig" data-img="action"><span class="im"><img src="img/web/action-s.webp" width="720" height="480" alt="動作的繪製：比例 × 動態 × 手勢" loading="lazy" decoding="async"></span><span>動作的繪製：比例 × 動態 × 手勢</span></button>
+              <button type="button" class="fig" data-img="arm-joints-b"><span class="im"><img src="img/web/arm-joints-b-s.webp" width="720" height="405" alt="手臂比例與關節定位" loading="lazy" decoding="async"></span><span>手臂比例與關節定位</span></button>
+              <button type="button" class="fig" data-img="leg-knee"><span class="im"><img src="img/web/leg-knee-s.webp" width="720" height="405" alt="腿部比例與膝蓋位置" loading="lazy" decoding="async"></span><span>腿部比例與膝蓋位置</span></button>
+            </div>
+          </div>
         </div>
       </details>
 
     </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section id="gallery" class="grain">
+  <div class="wrap">
+    <div class="sh rv">
+      <h2>GALLERY<small>圖解講義</small></h2>
+      <p class="lead">上課用到的比例、動勢與視角圖解，集中在這裡。點圖可以放大，用左右鍵或畫面兩側的按鈕切換。圖中的數字都是起稿用的「參考值」，不是固定公式，會因為風格、年齡、性別與透視而調整。</p>
+    </div>
+    <div class="chips rv" role="group" aria-label="圖解分類">
+      <button type="button" class="chip" data-f="all" aria-pressed="true">全部</button>
+      <button type="button" class="chip" data-f="prop" aria-pressed="false">比例（W3）</button>
+      <button type="button" class="chip" data-f="pose" aria-pressed="false">姿態・動勢・視角（W5／W11）</button>
+    </div>
+    <div class="gal" id="gal"></div>
+    <details class="alt rv" id="altbox">
+      <summary>其他版本（同主題的另一種畫法）</summary>
+      <div class="gal" id="galAlt" style="margin-top:20px"></div>
+    </details>
+    <p class="galnote">圖解配合 <a href="#proportion">LESSON 02 頭身互動圖</a>與各單元筆記使用。</p>
   </div>
 </section>
 
@@ -532,7 +709,7 @@ footer .copy{margin-top:60px;font:400 11px/1.6 var(--latin);letter-spacing:.16em
     <div class="sh rv">
       <h2>LESSON 02<small>比例・頭身互動圖</small></h2>
       <div>
-        <p class="lead">畫人物最常見的問題，是「怪怪的但說不出哪裡怪」。原因多半出在比例。這個單元用「頭的長度」當作量尺，先建立全身的骨架位置，再談性別與年齡的差異。拖動左邊的滑桿，看看同一個角色從 2 頭身到 8 頭身會怎麼變。第 3 週的頭身與臉部比例、第 11 週的「比例是量尺」都可以拿這張圖對照。</p>
+        <p class="lead">畫人物最常見的問題，是「怪怪的但說不出哪裡怪」。原因多半出在比例。這個單元用「頭的長度」當作量尺，先建立全身的骨架位置，再談性別與年齡的差異。拖動左邊的滑桿，看看同一個角色從 2 頭身到 8 頭身會怎麼變。第 3 週的頭身與臉部比例、第 11 週的「比例是量尺」都可以拿這張圖對照，更多圖解見 <a href="#gallery">GALLERY</a>。</p>
       </div>
     </div>
 
@@ -585,6 +762,156 @@ footer .copy{margin-top:60px;font:400 11px/1.6 var(--latin);letter-spacing:.16em
 
         <div class="tip rv"><b>自我檢查</b>　比例只是參考值，不是公式。畫完後把圖左右翻轉、或用手機拍下縮小來看；也可以對照自己的身體：手垂下時，手腕是不是在胯下附近？</div>
         <p class="src rv">延伸閱讀：<a href="https://sanaimiyuki.com/jintai-hiritsu-5376.html" target="_blank" rel="noopener">人体比率の描き方（日文）</a>：以圖解說明各部位比例、男女與年齡差異，以及角度對比例的影響。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projects" class="grain">
+  <div class="wrap">
+    <div class="sh rv">
+      <h2>PROJECTS<small>期中與期末作業</small></h2>
+      <p class="lead">本課有兩項主要作業：<b>期中</b>投稿插畫競賽，<b>期末</b>分組合作完成一張「集合式角色海報」。細節以課堂公告為準；標「暫定」的項目會在課堂上確認。</p>
+    </div>
+
+    <!-- ===== MIDTERM ===== -->
+    <div class="proj rv" id="midterm">
+      <div class="phead">
+        <span class="pk">MIDTERM</span>
+        <h3>期中作業｜插畫競賽投稿<small>期中報告 11/5（WEEK 09）</small></h3>
+      </div>
+      <div class="pbody">
+        <p style="margin-top:0">把競賽當成真實的出題者：選一個競賽主題，構思想傳達的意象或氛圍，設計主角的個性，並以角色作為畫面主題完成作品。兩項指定競賽擇一，或自行找插畫競賽參加。</p>
+        <div class="contests">
+          <article class="contest" data-deadline="2026-11-13T12:00:00+08:00">
+            <div class="ck"><span>COMPETITION 01</span><span class="status">—</span></div>
+            <h4>第 7 屆台日學生原創插畫漫畫大賽<small>畫下去，世界就會看見。</small></h4>
+            <dl>
+              <dt>資格</dt><dd>高中生、大學生，手繪或數位皆可</dd>
+              <dt>組別</dt><dd>插畫組、漫畫組；每組限 2 件作品</dd>
+              <dt>報名</dt><dd>2026/9/1 12:00 至 11/13 12:00</dd>
+              <dt>細節</dt><dd>規格、獎項與徵件主題請見官網</dd>
+            </dl>
+            <a class="go" href="https://comic-illustcon.com/" target="_blank" rel="noopener">OFFICIAL SITE →</a>
+          </article>
+          <article class="contest" data-deadline="2026-11-02T23:59:00+08:00">
+            <div class="ck"><span>COMPETITION 02</span><span class="status">—</span></div>
+            <h4>2026 高雄駁二原創微漫畫比賽<small>駁二動漫祭 FFK19 微漫畫｜高雄市政府文化局</small></h4>
+            <dl>
+              <dt>資格</dt><dd>具中華民國國籍，不限年齡、性別（未滿 18 歲需監護人同意）</dd>
+              <dt>規格</dt><dd>1 至 4 頁微漫畫，A4、300 dpi 以上，彩色或黑白</dd>
+              <dt>收件</dt><dd>至 2026/11/2 23:59；頒獎 12/5</dd>
+              <dt>獎項</dt><dd>首獎 NT$20,000、優選 2 名 NT$6,000、佳作 2 名 NT$2,000</dd>
+              <dt>規定</dt><dd>需有部分為未公開的新繪製稿，不得含已得獎或已有商業合作之作品</dd>
+            </dl>
+            <a class="go" href="https://www.f-2.com.tw/2026-%e9%ab%98%e9%9b%84%e9%a7%81%e4%ba%8c%e5%8e%9f%e5%89%b5%e5%be%ae%e6%bc%ab%e7%95%ab%e6%af%94%e8%b3%bd%e5%be%b5%e4%bb%b6/" target="_blank" rel="noopener">OFFICIAL PAGE →</a>
+          </article>
+        </div>
+        <p class="src">以上資訊整理自兩個競賽的官方頁面，實際規定以簡章為準。</p>
+
+        <h4 class="sub">自行找競賽</h4>
+        <ul class="keys">
+          <li>作品以<b>插畫</b>為主（漫畫、微漫畫也可，但要有明確的角色設計），學生可以報名，可個人投稿。</li>
+          <li>有明確的徵件主題或規格，才好構思「想傳達的意象或氛圍」。</li>
+          <li>報名前先讀簡章：截止日、尺寸與檔案格式、是否限未發表作品、<b>AI 生成作品的規定</b>、著作權與授權條款。</li>
+          <li>搜尋關鍵字：「插畫比賽 徵件」「學生 插畫 競賽」「原創 漫畫 徵件」加上年份；來源以主辦單位官網與校內公告為主。</li>
+        </ul>
+
+        <h4 class="sub">進行步驟（暫定）</h4>
+        <ol class="steps">
+          <li>選定競賽，記下截止日、規格與主題。</li>
+          <li>發想：用「五問」拆關鍵字、查三層資料，完成「資料→設計」對照表（見 <a href="#u06">S1 角色發想與資料查找</a>）。</li>
+          <li>設計主角：個性、造型語言（形狀）、頭身比與五官、標誌性站姿與剪影（W2–W5）。</li>
+          <li>姿態與構圖：2 分鐘速寫找姿勢，用方盒決定視角，讓角色成為畫面主題。</li>
+          <li>完稿並投稿；期中報告時展示競賽資訊、發想與資料、角色設計稿與完稿。</li>
+        </ol>
+        <div class="hw"><b>繳交（暫定）</b>　依競賽規格完成的作品檔＋一頁創作說明（競賽、主題、角色個性、資料→設計對照）＋投稿證明（報名截圖或回條）。</div>
+      </div>
+    </div>
+
+    <!-- ===== FINAL ===== -->
+    <div class="proj rv" id="final">
+      <div class="phead">
+        <span class="pk">FINAL</span>
+        <h3>期末作業｜集合式角色海報<small>期末成果發表 1/7（WEEK 18）</small></h3>
+      </div>
+      <div class="pbody">
+        <p style="margin-top:0">全班依主題分組。同一組的角色共用同一個世界觀與畫面規範，每位成員各自設計並繪製角色，再由「排版統合人員」合成一張集合式角色海報，像一張角色陣容的團體照。重點不只是單一角色畫得好，而是<b>放在一起也和諧</b>。</p>
+
+        <h4 class="sub">主題（八選一，依報名分組）</h4>
+        <ul class="themes">
+          <li><b>01</b><h4>賽博西遊</h4><p>賽博龐克重新詮釋西遊記角色。</p></li>
+          <li><b>02</b><h4>科技山海經</h4><p>山海經異獸與科技感的結合。</p></li>
+          <li><b>03</b><h4>八家將・官將首・虎爺・魔神仔</h4><p>台灣廟會陣頭、民間信仰與傳說。</p></li>
+          <li><b>04</b><h4>格林童話黑暗反派</h4><p>童話反派角色的另一面。</p></li>
+          <li><b>05</b><h4>寶可夢</h4><p>Mega 進化，或設計新的一隻。</p></li>
+          <li><b>06</b><h4>黑實驗</h4><p>組內自訂世界觀。</p></li>
+          <li><b>07</b><h4>騎士團</h4><p>組內自訂世界觀。</p></li>
+          <li><b>08</b><h4>OC's</h4><p>原創角色，組內自訂世界觀。</p></li>
+        </ul>
+        <p class="src">取材民俗、宗教題材時，延續 S1 的「文化尊重檢核」，先查田野與文獻，避免誤用或消費文化符號。寶可夢屬現有 IP，作品僅作課堂練習，不作商業使用，「設計新的一隻」要有自己的形狀語言。</p>
+
+        <h4 class="sub">分工（暫定）</h4>
+        <div class="roles">
+          <div class="role">
+            <h4>繪製角色人員</h4>
+            <ul class="keys">
+              <li>依組內世界觀設計並繪製至少 1 個角色。</li>
+              <li>交出任務書、資料→設計對照、剪影縮圖與姿態。</li>
+              <li>依統一規範完成單人畫布，保留圖層交給排版統合。</li>
+            </ul>
+          </div>
+          <div class="role">
+            <h4>排版統合人員<small>氛圍物件設計、場景規劃</small></h4>
+            <ul class="keys">
+              <li>規劃海報構圖、場景與氛圍物件。</li>
+              <li>整合各角色圖層，檢查光源、描邊與色調是否一致。</li>
+              <li>輸出最終海報與數位展示版。</li>
+            </ul>
+          </div>
+        </div>
+
+        <h4 class="sub">統一規範（組內先簽訂，之後不再更動）</h4>
+        <table class="ratio">
+          <thead><tr><th>項目</th><th>規定</th></tr></thead>
+          <tbody>
+            <tr><td>造型張力與色彩和諧度</td><td>角色之間形狀要有變化（張力），色彩要落在同一套配色內（和諧）。每組先決定主色調與配色。</td></tr>
+            <tr><td>單人畫布</td><td>3000 × 4000 px（300 dpi）。</td></tr>
+            <tr><td>筆刷與描邊</td><td>統一使用特定筆刷，例如無筆壓粗線條，或有顆粒感的碳筆刷；描邊粗細範圍 8 px 至 15 px。</td></tr>
+            <tr><td>光源</td><td>明確規定主光源方向，例如左上方 45 度角冷光、右下方暖色反光，確保合成後立體感一致。</td></tr>
+          </tbody>
+        </table>
+
+        <h4 class="sub">時程（對應 WEEK 12–18，暫定）</h4>
+        <table class="ratio tl">
+          <thead><tr><th>週次</th><th>本週完成</th></tr></thead>
+          <tbody>
+            <tr><td>W12　11/26</td><td>公告專題；分組、選主題、分配繪製與排版統合人員。</td></tr>
+            <tr><td>W13　12/3</td><td>簽訂畫面規範；各角色完成任務書、資料→設計對照、剪影縮圖；開始上色。</td></tr>
+            <tr><td>W14　12/10</td><td>角色線稿與服飾道具定稿；排版統合提出海報構圖草案與氛圍物件清單。</td></tr>
+            <tr><td>W15　12/17</td><td>角色上色完成；連結世界觀：角色之間的關係、視線與場景。</td></tr>
+            <tr><td>W16　12/24</td><td>合成海報初稿與設計歷程頁；小組互評。</td></tr>
+            <tr><td>W17　12/31</td><td>最終稿與發表排練。</td></tr>
+            <tr><td>W18　1/7</td><td>期末成果發表與繳交。</td></tr>
+          </tbody>
+        </table>
+
+        <h4 class="sub">繳交內容（暫定）</h4>
+        <ul class="keys">
+          <li><b>個人</b>：角色單人畫布（PSD 保留圖層＋PNG）、角色設定頁（任務書、資料→設計對照、剪影、姿態）。</li>
+          <li><b>小組</b>：集合式角色海報（PSD 或 PDF＋PNG）、設計歷程頁、期末發表。海報尺寸待課堂公告。</li>
+        </ul>
+
+        <h4 class="sub">評量重點（草案）</h4>
+        <ul class="keys">
+          <li><b>造型張力</b>：形狀語言、剪影辨識度、比例與姿態。</li>
+          <li><b>色彩和諧</b>：配色、光源與筆刷是否一致。</li>
+          <li><b>發想與資料</b>：任務書、資料對照、出處標註、文化尊重。</li>
+          <li><b>整體海報</b>：構圖、氛圍物件與場景、合在一起的和諧度。</li>
+          <li><b>合作與發表</b>：分工清楚、準時交付、發表表達。</li>
+        </ul>
+        <div class="tip"><b>合成前互檢三致性</b>　光源方向、描邊粗細、整體色調。三項只要有一項不一致，角色放在一起就會像來自不同的作品。</div>
       </div>
     </div>
   </div>
@@ -659,12 +986,22 @@ footer .copy{margin-top:60px;font:400 11px/1.6 var(--latin);letter-spacing:.16em
     <li><a href="#about">ABOUT</a></li>
     <li><a href="#lessons">LESSONS</a></li>
     <li><a href="#notes">NOTES</a></li>
+    <li><a href="#gallery">GALLERY</a></li>
     <li><a href="#proportion">PROPORTION</a></li>
+    <li><a href="#projects">PROJECTS</a></li>
     <li><a href="#schedule">SCHEDULE</a></li>
     <li><a href="#tools">TOOLS</a></li>
   </ul>
   <a class="home" href="../">教學網站首頁</a>
 </nav>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="圖解放大檢視" hidden>
+  <button type="button" class="x" aria-label="關閉">×</button>
+  <button type="button" class="pv" aria-label="上一張">‹</button>
+  <button type="button" class="nx" aria-label="下一張">›</button>
+  <div class="box"><img id="lbimg" alt=""></div>
+  <div class="cap" id="lbcap"></div>
+</div>
 
 <script>
 /* ---------- lesson cards ---------- */
@@ -673,6 +1010,7 @@ var LESSONS=[
   {n:"02",t:"比例與臉部表情變化",tag:"PROPORTION",wk:"W3",out:"3 種五官比例、3 個年齡層、4 種表情",live:"#u02",ic:"heads"},
   {n:"03",t:"五官與姿態",tag:"FACE",wk:"W4",out:"6 個頭像角度＋標誌性站姿",live:"#u03",ic:"face"},
   {n:"04",t:"人物姿態速寫",tag:"POSE",wk:"W5",out:"2 分鐘速寫 ×5＋角色化姿態",live:"#u04",ic:"pose"},
+  {n:"S1",t:"角色發想與資料查找",tag:"IDEATION",wk:"補充",out:"角色任務書＋資料→設計對照表＋10個剪影",live:"#u06",ic:"idea"},
   {n:"05",t:"動起來的角色",tag:"GESTURE",wk:"W11",out:"「我沒事」3 張＋6 種手勢各 2 張",live:"#u05",ic:"hand"},
   {n:"06",t:"角色上色：眼睛與頭髮",tag:"COLOR",wk:"W13（暫定）",out:"角色上色練習",ic:"color"},
   {n:"07",t:"服飾、道具與細節",tag:"COSTUME",wk:"W14",out:"2 套服裝變化＋1 件隨身道具",ic:"costume"},
@@ -688,7 +1026,8 @@ var IC={
  color:'<circle cx="34" cy="38" r="20" fill="#e8ae3c"/><circle cx="64" cy="38" r="20" fill="#291c16" opacity=".85"/><circle cx="49" cy="64" r="20" fill="#c9b48c" opacity=".9"/>',
  turn:'<g fill="#291c16"><circle cx="18" cy="26" r="8"/><rect x="11" y="36" width="14" height="50" rx="5"/><circle cx="50" cy="26" r="8"/><rect x="45" y="36" width="9" height="50" rx="4"/><circle cx="82" cy="26" r="8"/><rect x="75" y="36" width="14" height="50" rx="5"/></g><path d="M8 94h84" stroke="#e8ae3c" stroke-width="3"/>',
  hand:'<g stroke="#291c16" stroke-width="3" fill="#e8ae3c" stroke-linejoin="round" stroke-linecap="round"><path d="M30 88 L28 52 C28 46 36 46 36 52 L36 30 C36 24 44 24 44 30 L44 22 C44 16 52 16 52 22 L52 28 C52 22 60 22 60 28 L60 34 C60 28 68 28 68 34 L68 62 C68 76 60 88 50 88Z"/></g><path d="M14 40 C10 30 14 20 22 16" stroke="#291c16" stroke-width="2.5" fill="none" stroke-linecap="round"/>',
- sheet:'<rect x="14" y="12" width="72" height="80" fill="#fbf7ef" stroke="#291c16" stroke-width="3"/><circle cx="34" cy="38" r="9" fill="#e8ae3c"/><path d="M28 50h12v26H28z" fill="#291c16"/><path d="M52 32h24M52 42h24M52 52h18M52 66h24M52 76h14" stroke="#291c16" stroke-width="2.5"/>'
+ sheet:'<rect x="14" y="12" width="72" height="80" fill="#fbf7ef" stroke="#291c16" stroke-width="3"/><circle cx="34" cy="38" r="9" fill="#e8ae3c"/><path d="M28 50h12v26H28z" fill="#291c16"/><path d="M52 32h24M52 42h24M52 52h18M52 66h24M52 76h14" stroke="#291c16" stroke-width="2.5"/>',
+ idea:'<g stroke="#291c16" stroke-width="3" fill="none" stroke-linecap="round"><circle cx="42" cy="42" r="24"/><path d="M60 60 L86 86"/></g><circle cx="42" cy="42" r="12" fill="#e8ae3c"/><path d="M16 14h8M10 24h6" stroke="#e8ae3c" stroke-width="4" stroke-linecap="round"/>'
 };
 document.getElementById("cardlist").innerHTML=LESSONS.map(function(l){
   var tag=l.live?'a':'div', href=l.live?' href="'+l.live+'"':'';
@@ -712,16 +1051,16 @@ var WEEKS=[
  ["6","10/15","業界參訪","暴風數位股份有限公司、安東青創基地——了解創業啟動","VISIT",1],
  ["7","10/22","自主練習週","老師公假；持續每日姿態速寫，整理期中角色草稿","PRACTICE"],
  ["8","10/29","綜合應用與期中準備","綜合應用造型語言，期中簡報排練與個別指導","REVIEW"],
- ["9","11/5","期中報告","故事概念、造型語言、比例與姿態成果發表","MIDTERM",1],
+ ["9","11/5","期中報告","故事概念、造型語言、比例與姿態成果發表；競賽投稿作品與創作說明","MIDTERM",1,"#midterm"],
  ["10","11/12","角色性格與表情設計","表情與肢體如何傳達個性；表情辨識度測試","EXPRESSION"],
  ["11","11/19","動起來的角色","比例量尺、動勢與重心、手勢、「我沒事」角色表演","GESTURE",0,"#u05"],
- ["12","11/26","業師演講｜江明諺","3D 原型師／玩具設計師：從 2D 造型、3D 建模到玩具設計的職涯歷程（13:30–16:20）","TALK",1],
- ["13","12/3","角色上色：眼睛與頭髮","上色流程與眼睛、頭髮的質感表現（時間待確認）","COLOR"],
- ["14","12/10","服飾、道具與細節修飾","服裝道具作為敘事延伸；材質、光影與線條層次","COSTUME"],
- ["15","12/17","世界觀與品牌延伸","代表場景或物件、風格字體與周邊商品版面","WORLD"],
- ["16","12/24","版面規劃與設計歷程","角色設定集與作品集排版、版面互評","SHEET"],
- ["17","12/31","成果發表排練","全班演練、時間控管與最後修改","REHEARSAL"],
- ["18","1/7","期末成果發表","完整角色設計歷程與作品集發表","FINAL",1]
+ ["12","11/26","業師演講｜江明諺","3D 原型師／玩具設計師：從 2D 造型、3D 建模到玩具設計的職涯歷程（13:30–16:20）","TALK",1,"","分組、選主題、分配繪製與排版統合人員"],
+ ["13","12/3","角色上色：眼睛與頭髮","上色流程與眼睛、頭髮的質感表現（時間待確認）","COLOR",0,"","簽訂畫面規範；任務書、資料對照、剪影縮圖；開始上色"],
+ ["14","12/10","服飾、道具與細節修飾","服裝道具作為敘事延伸；材質、光影與線條層次","COSTUME",0,"","角色線稿與服飾道具定稿；海報構圖草案"],
+ ["15","12/17","世界觀與品牌延伸","代表場景或物件、風格字體與周邊商品版面","WORLD",0,"","角色上色完成；連結世界觀與場景"],
+ ["16","12/24","版面規劃與設計歷程","角色設定集與作品集排版、版面互評","SHEET",0,"","合成海報初稿與設計歷程頁；小組互評"],
+ ["17","12/31","成果發表排練","全班演練、時間控管與最後修改","REHEARSAL",0,"","海報最終稿與發表排練"],
+ ["18","1/7","期末成果發表","完整角色設計歷程與作品集發表","FINAL",1,"#final","集合式角色海報發表與繳交"]
 ];
 (function(){
   var now=new Date(), y0=now.getMonth()>=7?now.getFullYear():now.getFullYear()-1, cur=-1;
@@ -730,7 +1069,7 @@ var WEEKS=[
   document.getElementById("sched").innerHTML=WEEKS.map(function(w,i){
     var c=[]; if(w[5])c.push("mark"); if(i===cur)c.push("now"); else if(cur<0||i<cur)c.push("past");
     var t=(w[6]?'<a href="'+w[6]+'">'+w[2]+'</a>':w[2])+(i===cur?'<span class="nowtag">本週</span>':'');
-    return '<li'+(c.length?' class="'+c.join(" ")+'"':'')+'><span class="wk">WEEK<b>'+(w[0].length<2?"0":"")+w[0]+'</b><i>'+w[1]+'</i></span><h3>'+t+'<small>'+w[3]+'</small></h3><span class="k">'+w[4]+'</span></li>';
+    return '<li'+(c.length?' class="'+c.join(" ")+'"':'')+'><span class="wk">WEEK<b>'+(w[0].length<2?"0":"")+w[0]+'</b><i>'+w[1]+'</i></span><h3>'+t+'<small>'+w[3]+'</small>'+(w[7]?'<small class="proj"><b>期末專題</b>'+w[7]+'</small>':'')+'</h3><span class="k">'+w[4]+'</span></li>';
   }).join("");
 })();
 
@@ -793,6 +1132,67 @@ var WEEKS=[
   document.querySelectorAll(".seg button").forEach(function(b){b.addEventListener("click",function(){sex=b.dataset.sex;document.querySelectorAll(".seg button").forEach(function(x){x.setAttribute("aria-pressed",x===b)});draw()})});
   draw();
 })();
+
+/* ---------- gallery + lightbox ---------- */
+var GAL=[
+ {id:"body-overview",t:"人體比例總覽：從觀察到角色設計",d:"全身與頭、肩寬與軀幹、手臂與腿部、透視縮短，一張看完。",g:"prop",wk:"W3",w:720,h:405},
+ {id:"concept-overview",t:"比例概念八格總覽",d:"全身、肩寬軀幹、手臂、腿、局部、建構步驟、年齡差異與角度透視。",g:"prop",wk:"W3",w:720,h:405},
+ {id:"concept-overview-b",of:"concept-overview",v:"B",w:720,h:405},
+ {id:"head-ratio",t:"全身比例與頭身比",d:"以頭長為單位量全身；6、7、8 頭身的視覺印象，以及頭身比如何影響年齡感與風格。",g:"prop",wk:"W3",w:720,h:405},
+ {id:"head-ratio-b",of:"head-ratio",v:"B",w:720,h:405},
+ {id:"shoulder-torso",t:"肩寬與軀幹比例",d:"肩寬、胸廓與骨盆的關係，會改變角色的體型與氣質印象。",g:"prop",wk:"W3",w:720,h:405},
+ {id:"shoulder-torso-b",of:"shoulder-torso",v:"B",w:720,h:405},
+ {id:"arm-joints-b",t:"手臂比例與關節定位",d:"上臂：前臂：手掌約 4：3：2；手肘約在腰高，手腕約在臀部（胯下）附近，彎曲時關節位置會改變。",g:"prop",wk:"W3 · W11",w:720,h:405},
+ {id:"arm-joints",of:"arm-joints-b",v:"B",w:720,h:405},
+ {id:"leg-knee",t:"腿部比例與膝蓋位置",d:"大腿與小腿長度相近，膝蓋約在髖部到腳底的中點，是腿部比例的重要定位點。",g:"prop",wk:"W3 · W11",w:720,h:405},
+ {id:"leg-knee-b",of:"leg-knee",v:"B",w:720,h:405},
+ {id:"face-hand-foot",t:"局部比例：臉、手、頭與腳",d:"臉寬約 5 個眼寬；手掌長度約等於臉高；頭高約等於腳掌長。",g:"prop",wk:"W3",w:720,h:405},
+ {id:"face-hand-foot-b",of:"face-hand-foot",v:"B",w:720,h:405},
+ {id:"face-hand-foot-c",of:"face-hand-foot",v:"C",w:720,h:450},
+ {id:"perspective",t:"視角改變比例的視覺效果",d:"近大遠小、前伸縮短：同一個身體部位在不同角度會變大、變小、變短。",g:"pose",wk:"W5",w:720,h:480},
+ {id:"gesture-line",t:"人體建構：從幾何形開始",d:"動作線→頭部→胸腔與骨盆→關節與四肢→人體輪廓→完成稿，由大到小。",g:"pose",wk:"W5",w:720,h:405},
+ {id:"gesture-to-pose",t:"人體建構的繪製步驟",d:"動勢線→頭部與胸腔→骨盆→四肢關節→肌肉塊→完整輪廓。",g:"pose",wk:"W5 · W11",w:720,h:405},
+ {id:"action",t:"動作的繪製：比例 × 動態 × 手勢",d:"7.5 至 8 頭身、動勢線到完成稿、手的基本結構與常用手勢，附練習建議。",g:"pose",wk:"W11",w:720,h:480}
+];
+var GBY={}; GAL.forEach(function(x){GBY[x.id]=x});
+GAL.forEach(function(x){ if(x.of){ var p=GBY[x.of]; x.t=p.t+"（版本 "+x.v+"）"; x.d=p.d; x.g=p.g; x.wk=p.wk; p.n=(p.n||0)+1; } });
+function gitem(x){
+  var more=x.n?'<em>另有 '+x.n+' 個版本</em>':'';
+  return '<button type="button" class="gitem rv" data-img="'+x.id+'" data-g="'+x.g+'"><span class="im"><img src="img/web/'+x.id+'-s.webp" width="'+x.w+'" height="'+x.h+'" alt="'+x.t+'" loading="lazy" decoding="async"></span><span class="wk">'+x.wk+more+'</span><h3>'+x.t+'</h3><p>'+x.d+'</p></button>';
+}
+document.getElementById("gal").innerHTML=GAL.filter(function(x){return !x.of}).map(gitem).join("");
+document.getElementById("galAlt").innerHTML=GAL.filter(function(x){return x.of}).map(gitem).join("");
+document.querySelectorAll(".chip").forEach(function(c){c.addEventListener("click",function(){
+  var f=c.dataset.f;
+  document.querySelectorAll(".chip").forEach(function(o){o.setAttribute("aria-pressed",o===c)});
+  document.querySelectorAll(".gitem").forEach(function(g){g.hidden=!(f==="all"||g.dataset.g===f)});
+})});
+(function(){
+  var lb=document.getElementById("lb"), im=document.getElementById("lbimg"), cap=document.getElementById("lbcap"), cur=0, last=null;
+  function show(i){
+    cur=(i+GAL.length)%GAL.length; var x=GAL[cur];
+    im.src="img/web/"+x.id+".webp"; im.alt=x.t;
+    cap.innerHTML=x.t+'<small>'+x.wk+'　·　'+(cur+1)+' / '+GAL.length+'</small>';
+  }
+  function open(id){ last=document.activeElement; var i=GAL.findIndex(function(x){return x.id===id}); if(i<0)return; show(i); lb.hidden=false; document.body.style.overflow="hidden"; lb.querySelector(".x").focus(); }
+  function close(){ lb.hidden=true; im.removeAttribute("src"); document.body.style.overflow=""; if(last)last.focus(); }
+  document.addEventListener("click",function(e){
+    var b=e.target.closest("[data-img]"); if(b){e.preventDefault(); open(b.dataset.img); return}
+    if(e.target.closest("#lb .x")||e.target===lb) close();
+    else if(e.target.closest("#lb .pv")) show(cur-1);
+    else if(e.target.closest("#lb .nx")) show(cur+1);
+  });
+  document.addEventListener("keydown",function(e){
+    if(lb.hidden)return;
+    if(e.key==="Escape")close(); else if(e.key==="ArrowLeft")show(cur-1); else if(e.key==="ArrowRight")show(cur+1);
+  });
+})();
+
+/* ---------- contest status (by deadline) ---------- */
+document.querySelectorAll(".contest[data-deadline]").forEach(function(c){
+  var st=c.querySelector(".status"), open=new Date(c.dataset.deadline)>=new Date();
+  st.textContent=open?"報名中":"已截止"; st.className="status "+(open?"open":"closed");
+});
 
 /* ---------- reveal on scroll ---------- */
 (function(){
