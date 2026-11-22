@@ -1,0 +1,8 @@
+# 本機備份與參考檔，不推上網站
+index_*備份*.html
+index_*修正前.html
+index_*調整前.html
+index_修改前.html
+index_本機舊版.html
+*.jpg
+!**/img/**/*.jpg
