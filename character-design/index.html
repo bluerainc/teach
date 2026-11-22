@@ -2,422 +2,804 @@
 <html lang="zh-Hant-TW">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>TEACH｜Blue Rain 課程教學誌</title>
-<meta name="description" content="Blue Rain 課程教學網站：國立臺北商業大學 數位多媒體設計系的角色造型設計、影片後製作、設計概論。">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>角色造型設計｜Character Design — 北商大數媒系</title>
+<meta name="description" content="國立臺北商業大學 數位多媒體設計系「角色造型設計」課程教學網站：造型語言、比例與表情、五官與姿態、動勢與手勢、色彩、服飾道具、世界觀延伸與角色設定集。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+TC:wght@400;600;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#f6f0e4; --ink:#241a15; --ink-2:#5b4f48;
-  --mustard:#e6aa35; --blue:#2c3e9e; --green:#8fa58a; --brick:#b5523b; --rose:#e9c6b8;
-  --serif:"Noto Serif TC",serif; --latin:"Crimson Pro","Times New Roman",serif;
+  --mustard:#e8ae3c; --mustard-d:#d99a28; --cream:#f4ecdc; --paper:#fbf7ef;
+  --ink:#291c16; --ink-2:#594d47; --mute:#9a908a; --line:#291c16;
+  --serif:"Noto Serif TC","Shippori Mincho",serif; --latin:"Crimson Pro","Times New Roman",serif;
+  --nav-h:64px;
 }
 *{box-sizing:border-box}
-html,body{margin:0;height:100%;overflow:hidden;background:var(--paper);color:var(--ink);font:400 15px/1.9 var(--serif);letter-spacing:.05em;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 15px/2 var(--serif);letter-spacing:.06em;padding-bottom:var(--nav-h)}
+img,svg{display:block;max-width:100%}
 a{color:inherit}
-button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+/* paper grain */
+.grain{position:relative;isolation:isolate}
+.grain::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.35;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55  0 0 0 0 .42  0 0 0 0 .2  0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.wrap{width:min(1080px,100% - 48px);margin:0 auto}
 
-/* paper grain over everything */
-body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.32;mix-blend-mode:multiply;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5  0 0 0 0 .4  0 0 0 0 .25  0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* ---------- HERO ---------- */
+.hero{background:var(--mustard);min-height:calc(100svh - var(--nav-h));display:grid;place-items:center;overflow:hidden;position:relative}
+.hero svg.scene{width:min(1200px,118vw);height:auto;margin-top:16vh}
+.hero .vert{position:absolute;top:8vh;right:clamp(20px,8vw,120px);writing-mode:vertical-rl;font:600 clamp(22px,2.6vw,34px)/1.5 var(--serif);letter-spacing:.32em;color:var(--ink)}
+.hero .vert small{display:block;font-size:.42em;letter-spacing:.3em;margin-top:1.4em;font-weight:400}
+.hero .title{position:absolute;left:clamp(20px,6vw,90px);top:7vh;z-index:2}
+.hero .title p{margin:0;font:300 italic 15px/1 var(--latin);letter-spacing:.2em}
+.hero .title h1{margin:.3em 0 0;font:400 clamp(40px,5.6vw,80px)/1 var(--latin);letter-spacing:.04em}
+.hero .title h1 span{display:block;font:600 clamp(16px,1.7vw,22px)/1.6 var(--serif);letter-spacing:.3em;margin-top:.6em}
 
-/* ---------- loader ---------- */
-#loader{position:fixed;inset:0;z-index:100;background:var(--paper);display:grid;place-items:center;transition:opacity .7s ease .2s,visibility .7s ease .2s}
-#loader p{margin:0;font:400 13px/1 var(--latin);letter-spacing:.5em}
-#loader i{display:block;height:1px;background:var(--ink);margin-top:14px;width:0;animation:ld 1.1s ease forwards}
-@keyframes ld{to{width:100%}}
-body.ready #loader{opacity:0;visibility:hidden}
+/* torn paper divider */
+.tear{display:block;width:100%;height:60px}
 
-/* ---------- top bar ---------- */
-.top{position:fixed;left:0;right:0;top:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:20px clamp(18px,3vw,40px);pointer-events:none}
-.top>*{pointer-events:auto}
-.mast{font:600 15px/1 var(--latin);letter-spacing:.32em;text-decoration:none}
-.mast small{font:400 11px/1 var(--serif);letter-spacing:.2em;margin-left:12px}
-.menu-btn{display:flex;align-items:center;gap:10px;font:400 12px/1 var(--latin);letter-spacing:.3em}
-.menu-btn b{display:inline-grid;gap:4px}
-.menu-btn b i{display:block;width:22px;height:1.5px;background:currentColor}
+/* ---------- section heads ---------- */
+section{padding:clamp(70px,10vw,130px) 0}
+.sh{display:grid;grid-template-columns:260px 1fr;gap:40px;align-items:start}
+.sh h2{margin:0;font:400 clamp(40px,5vw,60px)/1 var(--latin);letter-spacing:.04em}
+.sh h2 small{display:block;font:400 12px/1 var(--serif);letter-spacing:.2em;margin-top:14px}
+.lead{margin:0;max-width:40em}
+.more{display:inline-flex;align-items:flex-end;gap:6px;margin-top:28px;font:italic 400 15px/1 var(--latin);letter-spacing:.14em;text-decoration:none;padding:0 4px 8px;position:relative}
+.more::after{content:"";position:absolute;left:0;right:-26px;bottom:0;height:12px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 12'%3E%3Cpath d='M0 9 H118 c6 0 10-2 14-6 M118 9 c6 0 12 1 18 3' fill='none' stroke='%23291c16' stroke-width='1.2' stroke-linecap='round'/%3E%3C/svg%3E") right bottom/100% 100% no-repeat}
+.more:hover{font-style:normal}
 
-/* ---------- spreads track ---------- */
-#track{position:fixed;inset:0;display:flex;transition:transform 1.1s cubic-bezier(.77,0,.18,1);will-change:transform}
-.spread{flex:0 0 100vw;height:100%;position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr)}
-.spread .txt{position:relative;z-index:3;padding:clamp(90px,14vh,140px) clamp(24px,5vw,80px) 110px;display:flex;flex-direction:column;justify-content:center}
-.spread .art{position:relative;z-index:2}
-.layer{position:absolute;inset:0;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
-.layer svg{position:absolute;width:100%;height:100%;inset:0}
+/* ---------- ABOUT ---------- */
+#about{background:var(--paper)}
+.goals{list-style:none;margin:56px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.goals li{border-top:1px solid var(--line);padding-top:18px}
+.goals b{display:block;font:300 italic 30px/1 var(--latin);color:var(--mustard-d)}
+.goals h3{margin:10px 0 6px;font-size:17px;letter-spacing:.12em}
+.goals p{margin:0;font-size:14px;color:var(--ink-2);line-height:1.9}
 
-.kicker{font:400 italic 15px/1 var(--latin);letter-spacing:.24em;margin:0 0 18px}
-.kicker b{font-style:normal;font-weight:600;margin-right:12px}
-.h{margin:0;font:400 clamp(54px,8.2vw,128px)/.92 var(--latin);letter-spacing:-.01em}
-.h small{display:block;font:900 clamp(20px,2.2vw,30px)/1.5 var(--serif);letter-spacing:.28em;margin-top:18px}
-.p{max-width:28em;margin:24px 0 0;font-size:15px;line-height:2.05}
-.tags{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 18px;font:400 italic 17px/1.4 var(--latin)}
-.tags li::before{content:"— ";opacity:.5}
-.cta{display:inline-flex;align-items:center;gap:14px;margin-top:36px;font:400 13px/1 var(--serif);letter-spacing:.2em;text-decoration:none;align-self:flex-start;padding:14px 22px;border:1.5px solid currentColor;border-radius:99px;transition:background .3s,color .3s}
-.cta:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.cta.off{opacity:.55;pointer-events:none;border-style:dashed}
-.chap-no{position:absolute;right:clamp(14px,2vw,30px);bottom:84px;z-index:3;font:300 italic clamp(120px,20vw,300px)/.8 var(--latin);opacity:.12;pointer-events:none}
+/* ---------- LESSONS (works-like grid) ---------- */
+#lessons{background:var(--cream)}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:0 40px;margin-top:56px;border-top:1px solid var(--line)}
+.card{display:grid;grid-template-columns:1fr 150px;gap:20px;padding:22px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.card .tag{font-size:11px;letter-spacing:.14em;color:var(--ink-2)}
+.card h3{margin:4px 0 10px;font-size:19px;line-height:1.5;letter-spacing:.1em}
+.card dl{margin:0;display:grid;grid-template-columns:4.5em 1fr;font-size:12px;line-height:1.9;color:var(--ink-2)}
+.card dt,.card dd{margin:0;border-bottom:1px solid #d9cfbd;padding:2px 0}
+.card .thumb{background:var(--paper);display:grid;place-items:center;aspect-ratio:1}
+.card .thumb svg{width:78%}
+.card.live{cursor:pointer}
+.card.live:hover h3{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px}
+.pill{display:inline-block;font:400 11px/1 var(--serif);letter-spacing:.1em;padding:4px 8px;border:1px solid var(--ink);border-radius:99px;margin-left:8px;vertical-align:3px}
+.pill.on{background:var(--ink);color:var(--paper)}
 
-/* page enter animation */
-.spread .txt>*{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
-.spread.on .txt>*{opacity:1;transform:none}
-.spread.on .txt>*:nth-child(2){transition-delay:.12s}.spread.on .txt>*:nth-child(3){transition-delay:.22s}.spread.on .txt>*:nth-child(4){transition-delay:.32s}.spread.on .txt>*:nth-child(5){transition-delay:.42s}
-.spread .art .pop{transform-box:fill-box;transform-origin:center;transform:scale(.6) rotate(-8deg);opacity:0;transition:transform .9s cubic-bezier(.3,1.5,.4,1),opacity .5s}
-.spread.on .art .pop{transform:none;opacity:1}
-.spread.on .art .pop:nth-of-type(2){transition-delay:.1s}.spread.on .art .pop:nth-of-type(3){transition-delay:.18s}.spread.on .art .pop:nth-of-type(4){transition-delay:.26s}.spread.on .art .pop:nth-of-type(5){transition-delay:.34s}.spread.on .art .pop:nth-of-type(6){transition-delay:.42s}
+/* ---------- LESSON 01 ---------- */
+#proportion{background:var(--paper)}
+.lab{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:48px;margin-top:56px;align-items:start}
+.stage{background:var(--cream);border:1px solid var(--line);padding:18px 18px 10px;position:sticky;top:20px}
+.stage svg{width:100%;height:auto}
+.ctrl{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;margin:12px 0 4px;font-size:13px}
+.ctrl label{display:flex;align-items:center;gap:10px}
+.ctrl input[type=range]{width:180px;accent-color:var(--ink)}
+.seg{display:inline-flex;border:1px solid var(--ink);border-radius:99px;overflow:hidden}
+.seg button{font:inherit;font-size:12px;letter-spacing:.1em;border:0;background:transparent;padding:4px 14px;cursor:pointer;color:var(--ink)}
+.seg button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+.readout{font:400 italic 22px/1 var(--latin)}
+.readout em{font:600 13px/1 var(--serif);font-style:normal;letter-spacing:.12em;margin-left:8px}
+.type{margin:4px 0 0;font-size:13px;color:var(--ink-2)}
+.notes h3{font-size:18px;letter-spacing:.12em;margin:44px 0 10px;display:flex;gap:12px;align-items:baseline}
+.notes h3:first-child{margin-top:0}
+.notes h3 i{font:300 italic 26px/1 var(--latin);color:var(--mustard-d)}
+.notes p{margin:0 0 10px}
+.ratio{width:100%;border-collapse:collapse;font-size:14px;margin:8px 0}
+.ratio th,.ratio td{text-align:left;padding:9px 8px;border-bottom:1px solid #d9cfbd;vertical-align:top;line-height:1.7}
+.ratio th{font-weight:600;font-size:12px;letter-spacing:.14em;border-bottom-color:var(--ink)}
+.ratio td:first-child{white-space:nowrap;font-family:var(--latin);font-size:17px}
+.steps{counter-reset:s;list-style:none;padding:0;margin:8px 0}
+.steps li{counter-increment:s;position:relative;padding:10px 0 10px 46px;border-bottom:1px solid #d9cfbd;line-height:1.8}
+.steps li::before{content:counter(s);position:absolute;left:0;top:6px;width:30px;height:30px;border:1px solid var(--ink);border-radius:50%;display:grid;place-items:center;font:400 16px/1 var(--latin)}
+.keys{list-style:none;padding:0;margin:8px 0}
+.keys li{padding:10px 0 10px 22px;border-bottom:1px solid #d9cfbd;line-height:1.8;position:relative}
+.keys li::before{content:"";position:absolute;left:2px;top:21px;width:9px;height:9px;background:var(--mustard)}
+.tip{background:var(--mustard);padding:18px 22px;margin-top:22px;font-size:14px;line-height:1.9}
+.tip b{letter-spacing:.14em}
+.src{font-size:12px;color:var(--ink-2);margin-top:16px}
 
-/* themes */
-.t-cover{background:var(--paper)}
-.t-index{background:var(--rose)}
-.t-mustard{background:var(--mustard)}
-.t-blue{background:var(--blue);color:#f6f0e4}
-.t-green{background:var(--green)}
-.t-back{background:var(--ink);color:#efe6d6}
-.t-blue .cta:hover{background:#f6f0e4;color:var(--blue);border-color:#f6f0e4}
-.t-back .cta:hover{background:#efe6d6;color:var(--ink)}
+/* ---------- NOTES (unit accordions) ---------- */
+#notes{background:var(--paper)}
+.units{margin-top:56px;border-top:1px solid var(--line)}
+.unit{border-bottom:1px solid var(--line)}
+.unit summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:120px 1fr auto;gap:20px;align-items:center;padding:22px 0}
+.unit summary::-webkit-details-marker{display:none}
+.unit summary .wk{font:400 12px/1.4 var(--serif);letter-spacing:.12em;color:var(--ink-2)}
+.unit summary .wk b{display:block;font:300 italic 30px/1 var(--latin);color:var(--mustard-d)}
+.unit summary h3{margin:0;font-size:19px;letter-spacing:.1em;line-height:1.5}
+.unit summary h3 small{display:block;font:300 italic 15px/1.4 var(--latin);letter-spacing:.08em;color:var(--ink-2)}
+.unit summary::after{content:"+";font:300 32px/1 var(--latin);transition:transform .25s}
+.unit[open] summary::after{transform:rotate(45deg)}
+.unit summary:hover h3{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px}
+.ubody{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 48px;padding:0 0 34px 140px}
+.ubody h4{margin:18px 0 4px;font-size:13px;letter-spacing:.2em;color:var(--ink-2);font-weight:600}
+.ubody .keys li,.ubody .steps li{font-size:14px}
+.ubody .full{grid-column:1/-1}
+.hw{background:var(--cream);border-left:6px solid var(--mustard);padding:14px 20px;font-size:14px;line-height:1.9;margin-top:18px}
+.hw b{letter-spacing:.14em}
 
-/* cover */
-.cover{display:block}
-.cover .txt{position:absolute;inset:0;padding:0;display:block}
-.cover .issue{position:absolute;left:clamp(24px,5vw,80px);top:clamp(84px,13vh,130px);font:400 italic 16px/1.6 var(--latin);letter-spacing:.2em}
-.cover .big{position:absolute;left:clamp(16px,4vw,64px);bottom:clamp(90px,13vh,130px);margin:0;font:400 clamp(110px,23vw,360px)/.78 var(--latin);letter-spacing:-.02em}
-.cover .big span{display:block;font:900 clamp(18px,2vw,26px)/1.6 var(--serif);letter-spacing:.42em;margin:22px 0 0 .3em}
-.cover .vert{position:absolute;right:clamp(24px,6vw,96px);top:clamp(90px,14vh,140px);writing-mode:vertical-rl;margin:0;font:900 clamp(22px,2.6vw,34px)/1.6 var(--serif);letter-spacing:.34em}
-.cover .vert small{display:block;font-size:.4em;font-weight:400;letter-spacing:.3em;margin-top:1.6em}
-.cover .art{position:absolute;inset:0}
-.hint{position:absolute;right:clamp(24px,5vw,80px);bottom:96px;z-index:3;display:flex;align-items:center;gap:12px;font:400 italic 14px/1 var(--latin);letter-spacing:.24em;animation:nudge 1.8s ease-in-out infinite}
-@keyframes nudge{50%{transform:translateX(8px)}}
+/* ---------- SCHEDULE (news-like rules) ---------- */
+#schedule{background:var(--cream)}
+#schedule .sh h2{font-size:clamp(34px,4.2vw,50px)}
+.sched{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.sched li{display:grid;grid-template-columns:110px 1fr auto;gap:20px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+.sched .wk{font:400 12px/1.4 var(--serif);letter-spacing:.12em;color:var(--ink-2)}
+.sched .wk b{display:block;font:400 22px/1 var(--latin);color:var(--ink);letter-spacing:.04em}
+.sched h3{margin:0;font-size:15px;font-weight:400;letter-spacing:.1em}
+.sched h3 small{display:block;font-size:12px;color:var(--ink-2);letter-spacing:.06em}
+.sched .k{font:italic 300 13px/1 var(--latin);letter-spacing:.16em;color:var(--ink-2)}
+.sched li.mark{background:linear-gradient(90deg,var(--mustard) 0 6px,transparent 6px)}
+.sched li.mark .wk{padding-left:16px}
+.sched .wk i{display:block;font:300 italic 13px/1.4 var(--latin);letter-spacing:.08em;margin-top:4px}
+.sched li.past{opacity:.62}
+.sched .nowtag{display:inline-block;margin-left:10px;font-size:11px;letter-spacing:.12em;padding:3px 8px;border-radius:99px;background:var(--ink);color:var(--paper);vertical-align:2px}
+.sched h3 a{text-decoration:none;border-bottom:1px solid var(--ink-2)}
 
-/* index spread */
-.idx{display:block}
-.idx .txt{padding-bottom:40px;justify-content:flex-start;padding-top:clamp(90px,14vh,140px)}
-.toc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,28px);margin-top:36px;max-width:1100px}
-.toc button{text-align:left;display:flex;flex-direction:column;gap:10px}
-.toc .thumb{height:min(36vh,330px);border-radius:2px;position:relative;overflow:hidden;box-shadow:0 1px 0 rgba(0,0,0,.08);transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s}
-.toc button:hover .thumb{transform:translateY(-8px) rotate(-1.2deg);box-shadow:10px 14px 0 rgba(36,26,21,.9)}
-.toc .thumb svg{position:absolute;inset:0;width:100%;height:100%}
-.toc{margin-top:28px}
-.toc .thumb em{position:absolute;left:14px;top:10px;font:300 italic 44px/1 var(--latin);color:rgba(36,26,21,.75)}
-.toc .thumb.blue em{color:rgba(246,240,228,.85)}
-.toc strong{font:400 clamp(20px,2vw,28px)/1.1 var(--latin)}
-.toc span{font:600 13px/1.4 var(--serif);letter-spacing:.2em}
-.toc .st{font:400 11px/1 var(--serif);letter-spacing:.14em;border:1px solid var(--ink);border-radius:99px;padding:4px 9px;align-self:flex-start}
-.toc .st.on{background:var(--ink);color:var(--rose)}
+/* ---------- TOOLS ---------- */
+#tools{background:var(--paper)}
+.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
+.tool{border:1px solid var(--line);padding:24px 22px 22px;display:flex;flex-direction:column;gap:10px;text-decoration:none;background:var(--paper);transition:transform .25s,box-shadow .25s}
+.tool:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--ink)}
+.tool .k{font:italic 300 13px/1 var(--latin);letter-spacing:.18em;color:var(--ink-2)}
+.tool h3{margin:0;font:400 26px/1.15 var(--latin);letter-spacing:.02em}
+.tool h3 small{display:block;font:600 14px/1.6 var(--serif);letter-spacing:.12em;margin-top:6px}
+.tool p{margin:0;font-size:13.5px;line-height:1.9;color:var(--ink-2)}
+.tool ul{margin:0;padding-left:1.1em;font-size:13px;line-height:1.9}
+.tool .go{margin-top:auto;font:italic 400 14px/1 var(--latin);letter-spacing:.14em}
 
-/* back cover */
-.back dl{margin:30px 0 0;display:grid;grid-template-columns:6em 1fr;max-width:32em;font-size:14px}
-.back dt{font:600 11px/1 var(--latin);letter-spacing:.2em;padding:15px 0;border-bottom:1px solid #4d4038}
-.back dd{margin:0;padding:11px 0;border-bottom:1px solid #4d4038}
+/* ---------- FOOTER ---------- */
+footer{background:var(--ink);color:#e9e1d4;padding:80px 0 50px}
+footer .row{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+footer h2{margin:0;font:400 48px/1 var(--latin);color:var(--paper)}
+footer h2 small{display:block;font:400 12px/1 var(--serif);letter-spacing:.2em;margin-top:12px}
+footer dl{margin:0;display:grid;grid-template-columns:5em 1fr;gap:0;font-size:14px}
+footer dt{font:600 11px/1 var(--latin);letter-spacing:.18em;padding:16px 0;border-bottom:1px solid #4a3d36}
+footer dd{margin:0;padding:12px 0;border-bottom:1px solid #4a3d36}
+footer .copy{margin-top:60px;font:400 11px/1.6 var(--latin);letter-spacing:.16em;color:#a59a90}
 
-/* ---------- bottom bar ---------- */
-.bar{position:fixed;left:0;right:0;bottom:0;z-index:40;height:70px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 clamp(18px,3vw,40px);transition:color .6s}
-.pager{display:flex;align-items:center;gap:10px}
-.pager button{width:34px;height:34px;display:grid;place-items:center;border:1.5px solid currentColor;border-radius:50%;font:400 16px/1 var(--latin);transition:opacity .3s}
-.pager button:disabled{opacity:.25;cursor:default}
-.count{font:400 italic 15px/1 var(--latin);letter-spacing:.14em;min-width:5.5em;text-align:center}
-.dots{display:flex;gap:8px}
-.dots button{width:30px;height:2px;background:currentColor;opacity:.25;transition:opacity .3s,width .4s}
-.dots button.on{opacity:1;width:54px}
-.chapname{font:400 12px/1 var(--serif);letter-spacing:.24em}
-body[data-dark="1"] .top,body[data-dark="1"] .bar{color:#f2ead9}
+/* ---------- fixed bottom nav ---------- */
+.nav{position:fixed;left:0;right:0;bottom:0;height:var(--nav-h);z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 clamp(16px,3vw,40px);background:rgba(251,247,239,.92);backdrop-filter:blur(6px);border-top:1px solid var(--line)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo svg{width:34px;height:34px}
+.logo b{font:400 22px/1 var(--latin);letter-spacing:.06em}
+.logo span{font:400 11px/1.2 var(--serif);letter-spacing:.16em;color:var(--ink-2)}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;gap:clamp(12px,2.4vw,28px)}
+.nav ul a{font:400 13px/1 var(--latin);letter-spacing:.14em;text-decoration:none}
+.nav ul a:hover{font-style:italic}
+.nav .home{font:400 12px/1 var(--serif);letter-spacing:.1em;background:var(--ink);color:var(--paper);padding:10px 14px;border-radius:4px;text-decoration:none;white-space:nowrap}
 
-/* ---------- menu overlay ---------- */
-#menu{position:fixed;inset:0;z-index:60;background:var(--ink);color:#f2ead9;clip-path:circle(0 at calc(100% - 60px) 38px);transition:clip-path .8s cubic-bezier(.77,0,.18,1);display:grid;align-content:center;padding:0 clamp(24px,8vw,140px)}
-#menu.open{clip-path:circle(150% at calc(100% - 60px) 38px)}
-#menu ol{list-style:none;margin:0;padding:0;counter-reset:m}
-#menu li{border-bottom:1px solid #4d4038}
-#menu li button{display:flex;align-items:baseline;gap:24px;width:100%;padding:16px 0;text-align:left;font:400 clamp(30px,5vw,64px)/1.05 var(--latin);transition:padding .35s,color .3s}
-#menu li button:hover{padding-left:20px;color:var(--mustard);font-style:italic}
-#menu li em{font:400 italic 15px/1 var(--latin);min-width:2.4em;opacity:.6}
-#menu li span{font:600 14px/1 var(--serif);letter-spacing:.22em;opacity:.85}
-#menu .close{position:absolute;right:clamp(18px,3vw,40px);top:22px;font:400 12px/1 var(--latin);letter-spacing:.3em}
+/* reveal */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
 
-@media (max-width:860px){
-  .spread{grid-template-columns:1fr;grid-template-rows:auto 1fr}
-  .spread .txt{padding:88px 24px 0;justify-content:flex-start}
-  .spread .art{min-height:34vh}
-  .h{font-size:clamp(46px,13vw,80px)}
-  .p{font-size:14px;line-height:1.9;margin-top:16px}
-  .tags{margin-top:16px;font-size:15px}
-  .cta{margin-top:22px}
-  .toc{grid-template-columns:repeat(3,1fr);gap:10px}.toc .thumb{height:26vh}
-  .toc strong{font-size:15px}.toc span{font-size:11px;letter-spacing:.1em}.toc .st{display:none}
-  .chap-no{bottom:76px;font-size:130px}
-  .dots,.chapname{display:none}
-  .cover .vert{display:none}
-  .cover .big{bottom:auto;top:23vh}
-  .cover .issue{font-size:12px;top:78px}
-  .cover .art{top:auto;height:52vh;bottom:70px}
-  .back .txt{padding-top:110px}
+@media (max-width:900px){
+  .sh{grid-template-columns:1fr;gap:18px}
+  .goals,.tools{grid-template-columns:1fr}
+  .cards{grid-template-columns:1fr}
+  .lab{grid-template-columns:1fr}
+  .ubody{grid-template-columns:1fr;padding-left:0}
+  .unit summary{grid-template-columns:84px 1fr auto}
+  .stage{position:static}
+  footer .row{grid-template-columns:1fr}
+  .nav ul{display:none}
+  .hero .vert{top:auto;bottom:5vh;right:24px;font-size:22px}
+  .hero svg.scene{margin-top:4vh}
 }
-@media (prefers-reduced-motion:reduce){
-  #track,.layer,.spread .txt>*,.spread .art .pop{transition:none!important}
-  .hint{animation:none}
+@media (max-width:560px){
+  .card{grid-template-columns:1fr 96px}
+  .sched li{grid-template-columns:76px 1fr}
+  .sched .k{display:none}
 }
 </style>
 </head>
 <body>
-<div id="loader" aria-hidden="true"><div><p>LOADING</p><i></i></div></div>
 
-<header class="top">
-  <a class="mast" href="#" data-go="0">TEACH<small>課程教學誌</small></a>
-  <button class="menu-btn" id="openMenu" aria-expanded="false" aria-controls="menu">INDEX <b><i></i><i></i></b></button>
+<!-- ============ HERO ============ -->
+<header class="hero grain" id="top">
+  <svg class="scene" viewBox="0 0 1200 720" role="img" aria-label="插畫：攤開的大書上，小人們拿著鉛筆、尺與木頭人偶，正在畫角色、量頭身比例">
+    <defs>
+      <pattern id="lines" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M0 21.5H22" stroke="#e3d6bd" stroke-width="1"/></pattern>
+    </defs>
+    <!-- big diagonal paper fold -->
+    <path d="M0 520 L1200 380 L1200 720 L0 720Z" fill="#d99a28" opacity=".45"/>
+    <!-- book block thickness -->
+    <path d="M120 300 L600 250 L1080 300 L1110 560 L600 640 L90 560Z" fill="#c98a1e"/>
+    <path d="M110 290 L600 238 L1090 290 L1110 545 L600 622 L90 545Z" fill="#efe3c8"/>
+    <!-- pages -->
+    <path d="M130 270 C330 230 480 228 600 250 L600 600 C470 575 320 572 100 530Z" fill="#fbf7ef"/>
+    <path d="M1070 270 C870 230 720 228 600 250 L600 600 C730 575 880 572 1100 530Z" fill="#f4ecdc"/>
+    <path d="M1070 270 C870 230 720 228 600 250 L600 600 C730 575 880 572 1100 530Z" fill="url(#lines)" opacity=".7"/>
+    <path d="M600 250 L600 600" stroke="#c9b48c" stroke-width="2"/>
+    <!-- head-unit ruler drawn on left page -->
+    <g stroke="#291c16" stroke-width="1.4" fill="none" opacity=".75">
+      <path d="M200 300 L200 520"/>
+      <path d="M192 300h16M192 327.5h16M192 355h16M192 382.5h16M192 410h16M192 437.5h16M192 465h16M192 492.5h16M192 520h16"/>
+    </g>
+    <g font-family="Crimson Pro,serif" font-size="13" fill="#291c16" opacity=".8">
+      <text x="172" y="318">1</text><text x="172" y="345">2</text><text x="172" y="373">3</text><text x="172" y="400">4</text><text x="172" y="428">5</text><text x="172" y="455">6</text><text x="172" y="483">7</text><text x="172" y="510">8</text>
+    </g>
+    <!-- sketched 8-head figure on left page -->
+    <g stroke="#291c16" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".85">
+      <ellipse cx="270" cy="313" rx="10" ry="13"/>
+      <path d="M270 327v6M248 337h44M252 337l4 30 6 25h16l6-25 4-30M262 392l-5 64 -2 62M278 392l5 64 2 62M248 337l-6 28-4 36M292 337l6 28 4 36"/>
+    </g>
+    <g stroke="#291c16" stroke-width="1" stroke-dasharray="3 4" opacity=".5"><path d="M222 300h90M222 520h90"/></g>
+
+    <!-- figure A: sitting on right page drawing with giant pencil -->
+    <g transform="translate(760 330)">
+      <path d="M-20 120 C-30 80 -5 55 25 55 C60 55 75 85 68 120Z" fill="#e8ae3c"/>
+      <path d="M-12 116 C-30 140 -60 150 -78 146 L-74 160 C-40 168 -6 156 12 130Z" fill="#291c16"/>
+      <path d="M50 118 C60 145 40 160 10 168 L12 182 C55 178 82 158 72 118Z" fill="#291c16"/>
+      <ellipse cx="-80" cy="153" rx="16" ry="9" fill="#291c16"/>
+      <ellipse cx="14" cy="176" rx="16" ry="9" fill="#291c16"/>
+      <circle cx="24" cy="30" r="26" fill="#f4ecdc"/>
+      <path d="M-2 26 C0 4 20 -6 40 2 C52 8 54 20 50 30 C40 18 22 16 -2 26Z" fill="#291c16"/>
+      <path d="M50 80 C80 82 100 70 118 58" stroke="#f4ecdc" stroke-width="14" stroke-linecap="round" fill="none"/>
+      <!-- giant pencil -->
+      <g transform="rotate(-38 140 40)">
+        <rect x="80" y="30" width="150" height="20" fill="#e8ae3c" stroke="#291c16" stroke-width="2"/>
+        <rect x="216" y="30" width="18" height="20" fill="#f4ecdc" stroke="#291c16" stroke-width="2"/>
+        <path d="M80 30 L52 40 L80 50Z" fill="#f4ecdc" stroke="#291c16" stroke-width="2"/>
+        <path d="M60 37 L52 40 L60 43Z" fill="#291c16"/>
+      </g>
+    </g>
+    <!-- scribble the pencil drew -->
+    <path d="M820 520 c20-30 50 10 70-20 s40 0 60-25" stroke="#291c16" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+    <!-- figure B: standing, holding ruler next to mannequin -->
+    <g transform="translate(430 140)">
+      <!-- wooden mannequin -->
+      <g fill="#f4ecdc" stroke="#291c16" stroke-width="2">
+        <ellipse cx="-60" cy="40" rx="17" ry="21"/>
+        <path d="M-82 70 C-80 62 -40 62 -38 70 L-44 130 L-76 130Z"/>
+        <circle cx="-60" cy="140" r="9"/>
+        <path d="M-74 148 L-80 230 L-68 230 L-62 150Z M-46 148 L-40 230 L-52 230 L-58 150Z"/>
+        <path d="M-82 72 L-100 120 L-92 124 L-74 80Z M-38 72 L-14 108 L-20 114 L-44 82Z"/>
+      </g>
+      <path d="M-60 230 v40" stroke="#291c16" stroke-width="3"/>
+      <path d="M-84 272 h48" stroke="#291c16" stroke-width="5" stroke-linecap="round"/>
+      <!-- person -->
+      <circle cx="40" cy="46" r="24" fill="#f4ecdc"/>
+      <path d="M16 46 C14 22 30 12 46 14 C62 16 68 30 64 44 C58 34 40 30 30 40 C26 44 22 50 16 46Z" fill="#291c16"/>
+      <rect x="31" y="40" width="20" height="7" rx="3" fill="none" stroke="#291c16" stroke-width="2.4"/>
+      <path d="M8 88 C12 70 70 70 74 88 L80 170 L2 170Z" fill="#fbf7ef"/>
+      <path d="M2 170 h78 l-6 26 h-66Z" fill="#e8ae3c"/>
+      <path d="M12 196 L8 268 M66 196 L70 268" stroke="#291c16" stroke-width="22" stroke-linecap="round"/>
+      <ellipse cx="2" cy="274" rx="18" ry="9" fill="#291c16"/>
+      <ellipse cx="78" cy="274" rx="18" ry="9" fill="#291c16"/>
+      <!-- ruler -->
+      <g transform="rotate(-8 -20 60)">
+        <rect x="-30" y="0" width="16" height="250" fill="#e8ae3c" stroke="#291c16" stroke-width="2"/>
+        <path d="M-30 20h8M-30 40h8M-30 60h12M-30 80h8M-30 100h8M-30 120h12M-30 140h8M-30 160h8M-30 180h12M-30 200h8M-30 220h8" stroke="#291c16" stroke-width="1.5"/>
+      </g>
+      <path d="M10 100 C-4 120 -14 120 -22 118" stroke="#fbf7ef" stroke-width="14" stroke-linecap="round" fill="none"/>
+    </g>
+
+    <!-- floating stationery -->
+    <g transform="translate(1000 610) rotate(18)">
+      <rect width="70" height="34" rx="4" fill="#fbf7ef" stroke="#291c16" stroke-width="2"/>
+      <rect width="26" height="34" rx="4" fill="#291c16"/>
+    </g>
+    <circle cx="935" cy="190" r="14" fill="#f4ecdc" stroke="#291c16" stroke-width="2"/>
+    <circle cx="935" cy="190" r="5" fill="#291c16"/>
+    <g transform="translate(70 600) rotate(-28)">
+      <rect width="120" height="12" fill="#291c16"/>
+      <path d="M120 0 L140 6 L120 12Z" fill="#f4ecdc"/>
+    </g>
+    <g stroke="#291c16" stroke-width="3" stroke-linecap="round" fill="none">
+      <path d="M690 170 c10-16 26-16 36 0 s26 16 36 0"/>
+      <path d="M1040 420 l18 -40 l14 30 l16 -36"/>
+    </g>
+  </svg>
+  <p class="vert">角色<br>從形狀開始<small>造形・個性・故事</small></p>
+  <div class="title">
+    <p>NTUB · Digital Multimedia Design</p>
+    <h1>Character Design<span>角色造型設計</span></h1>
+  </div>
 </header>
 
-<main id="track" aria-live="polite">
-
-  <!-- 0 COVER -->
-  <section class="spread cover t-cover on" data-name="封面" aria-label="封面">
-    <div class="art">
-      <div class="layer" data-depth="10">
-        <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <path class="pop" d="M760 120 C980 60 1300 140 1380 330 C1460 520 1330 760 1080 800 C850 840 640 720 610 520 C580 330 600 170 760 120Z" fill="#e6aa35"/>
-        </svg>
-      </div>
-      <div class="layer" data-depth="22">
-        <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <rect class="pop" x="1040" y="250" width="230" height="300" fill="#2c3e9e" transform="rotate(8 1155 400)"/>
-          <circle class="pop" cx="820" cy="520" r="120" fill="#b5523b"/>
-          <path class="pop" d="M1180 600 l140 -40 l-30 150 Z" fill="#8fa58a"/>
-        </svg>
-      </div>
-      <div class="layer" data-depth="38">
-        <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <!-- little figure painting with a giant brush -->
-          <g class="pop">
-            <circle cx="980" cy="330" r="30" fill="#f6f0e4" stroke="#241a15" stroke-width="3"/>
-            <path d="M950 322 c2-30 50-40 62-6 c-18-6-40-6-62 6z" fill="#241a15"/>
-            <path d="M944 372 c10-14 62-14 72 0 l10 110 h-92z" fill="#f6f0e4" stroke="#241a15" stroke-width="3"/>
-            <path d="M944 482 l-8 120 M1026 482 l8 120" stroke="#241a15" stroke-width="22" stroke-linecap="round"/>
-            <path d="M1014 392 c30 10 50 -6 70 -36" stroke="#f6f0e4" stroke-width="16" stroke-linecap="round" fill="none"/>
-            <path d="M1014 392 c30 10 50 -6 70 -36" stroke="#241a15" stroke-width="3" fill="none"/>
-            <g transform="rotate(-40 1090 330)"><rect x="1080" y="200" width="16" height="150" fill="#241a15"/><path d="M1072 190 h32 l-6 -60 h-20z" fill="#e6aa35" stroke="#241a15" stroke-width="3"/></g>
-          </g>
-          <path class="pop" d="M690 700 c60-40 120 30 190-10 s120 10 170-20" stroke="#241a15" stroke-width="4" fill="none" stroke-linecap="round"/>
-        </svg>
+<!-- ============ ABOUT ============ -->
+<section id="about" class="grain">
+  <div class="wrap">
+    <div class="sh rv">
+      <h2>ABOUT<small>課程介紹</small></h2>
+      <div>
+        <p class="lead">一個好角色，要讓人一眼記住形狀、一看就懂個性、一聽就想知道他的故事。這門課從一句故事關鍵字出發，先練造型語言、比例與五官，再讓角色用姿態和手勢「演」出情緒，接著處理色彩、服飾與世界觀，最後完成一份可以放進作品集的角色設定集。每週依「理論簡介 → 案例賞析 → 隨堂實作 → 作品討論」四段進行。</p>
+        <a class="more" href="#lessons">VIEW LESSONS</a>
       </div>
     </div>
-    <div class="txt">
-      <p class="issue">Issue No. 01 — 115 學年度<br>Blue Rain · NTUB Digital Multimedia Design</p>
-      <h1 class="big">Teach<span>課程教學誌</span></h1>
-      <p class="vert">畫給<br>說故事的人<small>造形・影像・設計</small></p>
-    </div>
-    <button class="hint" data-go="1">翻開這一期 <span aria-hidden="true">⟶</span></button>
-  </section>
-
-  <!-- 1 INDEX -->
-  <section class="spread idx t-index" data-name="目錄" aria-label="目錄">
-    <div class="txt">
-      <p class="kicker"><b>00</b>Contents</p>
-      <h2 class="h" style="font-size:clamp(48px,6vw,92px)">In this issue<small>本期目錄</small></h2>
-      <div class="toc">
-        <button data-go="2"><div class="thumb" style="background:#e6aa35"><em>01</em>
-          <svg viewBox="0 0 200 250" aria-hidden="true"><circle cx="120" cy="100" r="22" fill="#f6f0e4" stroke="#241a15" stroke-width="3"/><path d="M98 130 h44 l10 70 h-64z" fill="#241a15"/><path d="M40 60 v150" stroke="#241a15" stroke-width="3"/><path d="M34 60h12M34 90h12M34 120h12M34 150h12M34 180h12M34 210h12" stroke="#241a15" stroke-width="2"/></svg></div>
-          <strong>Character Design</strong><span>角色造型設計</span><span class="st on">上線中</span></button>
-        <button data-go="3"><div class="thumb blue" style="background:#2c3e9e"><em>02</em>
-          <svg viewBox="0 0 200 250" aria-hidden="true"><rect x="40" y="90" width="120" height="80" rx="6" fill="#f6f0e4"/><path d="M90 112 l30 18 l-30 18z" fill="#2c3e9e"/><path d="M30 200 h140" stroke="#e6aa35" stroke-width="8"/><path d="M70 196 v10 M110 196 v10 M140 196 v10" stroke="#f6f0e4" stroke-width="3"/></svg></div>
-          <strong>Video Post-production</strong><span>影片後製作</span><span class="st">準備中</span></button>
-        <button data-go="4"><div class="thumb" style="background:#8fa58a"><em>03</em>
-          <svg viewBox="0 0 200 250" aria-hidden="true"><circle cx="80" cy="120" r="34" fill="#b5523b"/><rect x="100" y="120" width="60" height="60" fill="#241a15"/><path d="M60 210 l40 -70 l40 70z" fill="#f6f0e4"/></svg></div>
-          <strong>Intro to Design</strong><span>設計概論</span><span class="st">準備中</span></button>
-      </div>
-    </div>
-  </section>
-
-  <!-- 2 CHARACTER DESIGN -->
-  <section class="spread t-mustard" data-name="角色造型設計" aria-label="01 角色造型設計">
-    <div class="txt">
-      <p class="kicker"><b>01</b>Chapter · Character</p>
-      <h2 class="h">Character<br>Design<small>角色造型設計</small></h2>
-      <p class="p">一個好角色，要讓人一眼記住形狀、一看就懂個性。從一句故事關鍵字出發，練造型語言、比例與五官、姿態與手勢，再到色彩、服飾與世界觀，最後完成一份能放進作品集的角色設定集。</p>
-      <ul class="tags"><li>Shape</li><li>Proportion</li><li>Face</li><li>Gesture</li><li>Model Sheet</li></ul>
-      <a class="cta" href="character-design/">進入課程 <span aria-hidden="true">⟶</span></a>
-    </div>
-    <div class="art">
-      <div class="layer" data-depth="12"><svg viewBox="0 0 800 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <rect class="pop" x="150" y="140" width="460" height="620" fill="#f6f0e4" transform="rotate(-4 380 450)"/>
-        <g stroke="#d8cbb2" stroke-width="1"><path d="M190 200h400M190 260h400M190 320h400M190 380h400M190 440h400M190 500h400M190 560h400M190 620h400M190 680h400" transform="rotate(-4 380 450)"/></g>
-      </svg></div>
-      <div class="layer" data-depth="26"><svg viewBox="0 0 800 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <!-- 8 head ruler + figure -->
-        <g class="pop" stroke="#241a15" stroke-width="3" fill="none" stroke-linecap="round">
-          <path d="M250 210 v480"/><path d="M238 210h24M238 270h24M238 330h24M238 390h24M238 450h24M238 510h24M238 570h24M238 630h24M238 690h24"/>
-        </g>
-        <g class="pop" stroke="#241a15" stroke-width="3.5" fill="#e6aa35" stroke-linecap="round" stroke-linejoin="round">
-          <ellipse cx="390" cy="240" rx="22" ry="30" fill="#f6f0e4"/>
-          <path d="M350 288 h80 l-10 120 h-60z"/>
-          <path d="M360 408 l-8 140 l-4 140 M420 408 l8 140 l4 140" fill="none"/>
-          <path d="M350 292 l-14 120 l-6 70 M430 292 l14 120 l6 70" fill="none"/>
-        </g>
-        <!-- chibi -->
-        <g class="pop" stroke="#241a15" stroke-width="3.5" stroke-linecap="round">
-          <circle cx="540" cy="540" r="58" fill="#f6f0e4"/>
-          <path d="M490 528 c4-54 96-62 104 0 c-30-22-74-22-104 0z" fill="#241a15"/>
-          <circle cx="522" cy="552" r="5" fill="#241a15"/><circle cx="558" cy="552" r="5" fill="#241a15"/>
-          <path d="M508 598 h64 l8 62 h-80z" fill="#b5523b"/>
-          <path d="M520 660 v28 M560 660 v28" stroke-width="12"/>
-        </g>
-      </svg></div>
-      <div class="layer" data-depth="44"><svg viewBox="0 0 800 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <g class="pop" transform="rotate(-34 640 220)"><rect x="560" y="206" width="190" height="26" fill="#2c3e9e" stroke="#241a15" stroke-width="3"/><path d="M560 206 l-34 13 l34 13z" fill="#f6f0e4" stroke="#241a15" stroke-width="3"/></g>
-        <circle class="pop" cx="160" cy="760" r="40" fill="#b5523b"/>
-      </svg></div>
-    </div>
-    <span class="chap-no" aria-hidden="true">01</span>
-  </section>
-
-  <!-- 3 VIDEO POST -->
-  <section class="spread t-blue" data-name="影片後製作" data-dark="1" aria-label="02 影片後製作">
-    <div class="txt">
-      <p class="kicker"><b>02</b>Chapter · Moving Image</p>
-      <h2 class="h">Video<br>Post-production<small>影片後製作</small></h2>
-      <p class="p">拍完才是開始。剪輯節奏、調色、聲音設計與字幕，讓素材變成一支說得清楚、看得下去的影片。</p>
-      <ul class="tags"><li>Editing</li><li>Color Grading</li><li>Sound</li><li>Titles</li><li>Export</li></ul>
-      <span class="cta off">內容準備中</span>
-    </div>
-    <div class="art">
-      <div class="layer" data-depth="12"><svg viewBox="0 0 800 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <rect class="pop" x="120" y="220" width="520" height="330" rx="14" fill="#f6f0e4"/>
-        <path class="pop" d="M330 320 l120 65 l-120 65z" fill="#2c3e9e"/>
-      </svg></div>
-      <div class="layer" data-depth="28"><svg viewBox="0 0 800 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <g class="pop"><rect x="80" y="620" width="640" height="44" fill="#e6aa35"/><rect x="80" y="676" width="420" height="44" fill="#b5523b"/><rect x="520" y="676" width="200" height="44" fill="#8fa58a"/></g>
-        <path class="pop" d="M300 600 v140" stroke="#f6f0e4" stroke-width="4"/>
-      </svg></div>
-      <div class="layer" data-depth="46"><svg viewBox="0 0 800 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <g class="pop" fill="none" stroke="#f6f0e4" stroke-width="4" stroke-linecap="round"><path d="M600 160 c20-30 40 30 60 0 s40 30 60 0"/><path d="M110 150 v60 M130 130 v100 M150 150 v60 M170 120 v120 M190 160 v40"/></g>
-      </svg></div>
-    </div>
-    <span class="chap-no" aria-hidden="true">02</span>
-  </section>
-
-  <!-- 4 INTRO TO DESIGN -->
-  <section class="spread t-green" data-name="設計概論" aria-label="03 設計概論">
-    <div class="txt">
-      <p class="kicker"><b>03</b>Chapter · Foundation</p>
-      <h2 class="h">Intro to<br>Design<small>設計概論</small></h2>
-      <p class="p">點、線、面、色彩、構圖與字體——設計不是靈感一閃，而是一套看得見、說得出的方法。</p>
-      <ul class="tags"><li>Point · Line · Plane</li><li>Color</li><li>Composition</li><li>Type</li><li>Design Thinking</li></ul>
-      <span class="cta off">內容準備中</span>
-    </div>
-    <div class="art">
-      <div class="layer" data-depth="14"><svg viewBox="0 0 800 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <circle class="pop" cx="330" cy="380" r="170" fill="#b5523b"/>
-      </svg></div>
-      <div class="layer" data-depth="30"><svg viewBox="0 0 800 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <rect class="pop" x="400" y="380" width="250" height="250" fill="#241a15"/>
-        <path class="pop" d="M150 740 l150 -260 l150 260z" fill="#f6f0e4"/>
-      </svg></div>
-      <div class="layer" data-depth="48"><svg viewBox="0 0 800 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <circle class="pop" cx="640" cy="230" r="18" fill="#241a15"/>
-        <path class="pop" d="M560 760 C620 700 680 800 740 720" stroke="#241a15" stroke-width="4" fill="none" stroke-linecap="round"/>
-        <path class="pop" d="M120 180 h200" stroke="#e6aa35" stroke-width="10" stroke-linecap="round"/>
-      </svg></div>
-    </div>
-    <span class="chap-no" aria-hidden="true">03</span>
-  </section>
-
-  <!-- 5 BACK COVER -->
-  <section class="spread back t-back" data-name="封底" data-dark="1" aria-label="封底">
-    <div class="txt">
-      <p class="kicker"><b>—</b>Colophon</p>
-      <h2 class="h" style="font-size:clamp(52px,7vw,104px)">See you<br>in class.<small>課堂見</small></h2>
-      <dl>
-        <dt>SCHOOL</dt><dd>國立臺北商業大學 數位多媒體設計系</dd>
-        <dt>MAIL</dt><dd><a href="mailto:bluerain@ntut.edu.tw">bluerain@ntut.edu.tw</a></dd>
-        <dt>MORE</dt><dd><a href="https://bluerainc.github.io/NTUB/">NTUB 系上網站 ⟶</a></dd>
-      </dl>
-      <button class="cta" data-go="0" style="margin-top:34px">回到封面 <span aria-hidden="true">⟲</span></button>
-    </div>
-    <div class="art">
-      <div class="layer" data-depth="20"><svg viewBox="0 0 800 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <circle class="pop" cx="420" cy="420" r="200" fill="#e6aa35"/>
-        <rect class="pop" x="300" y="560" width="300" height="40" fill="#2c3e9e"/>
-        <circle class="pop" cx="560" cy="300" r="40" fill="#b5523b"/>
-      </svg></div>
-    </div>
-  </section>
-</main>
-
-<footer class="bar">
-  <div class="pager">
-    <button id="prev" aria-label="上一頁">⟵</button>
-    <span class="count" id="count">01 / 06</span>
-    <button id="next" aria-label="下一頁">⟶</button>
+    <ul class="goals">
+      <li class="rv"><b>01</b><h3>造型與比例</h3><p>先決定大形狀，再用頭身、五官配置調整年齡感與氣質，讓角色一眼就有個性。</p></li>
+      <li class="rv"><b>02</b><h3>姿態與表演</h3><p>用建構取代描輪廓，練動勢、重心與手勢，讓角色不靠對白也能說出心情。</p></li>
+      <li class="rv"><b>03</b><h3>世界觀與呈現</h3><p>延伸到色彩、服飾道具、場景與品牌應用，整理成業界看得懂的角色設定集。</p></li>
+    </ul>
   </div>
-  <div class="dots" id="dots" role="tablist" aria-label="頁面"></div>
-  <span class="chapname" id="chapname">封面</span>
+</section>
+
+<!-- ============ LESSONS ============ -->
+<section id="lessons" class="grain">
+  <div class="wrap">
+    <div class="sh rv">
+      <h2>LESSONS<small>課程單元</small></h2>
+      <p class="lead">九個單元依課程進度推進。標示「已上課」的單元可點進去看重點整理、課堂練習與作業；「準備中」的單元會隨進度陸續更新。</p>
+    </div>
+    <div class="cards" id="cardlist"></div>
+  </div>
+</section>
+
+<!-- ============ NOTES ============ -->
+<section id="notes" class="grain">
+  <div class="wrap">
+    <div class="sh rv">
+      <h2>NOTES<small>單元重點與作業</small></h2>
+      <p class="lead">已上課單元的重點整理。缺課或複習時，先看「重點」，再完成「課堂練習」與「作業」。點標題展開。</p>
+    </div>
+    <div class="units">
+
+      <details class="unit rv" id="u01">
+        <summary><span class="wk">WEEK 02<b>01</b></span><h3>造型語言<small>Shape Language</small></h3></summary>
+        <div class="ubody">
+          <div>
+            <h4>重點</h4>
+            <ul class="keys">
+              <li><b>方形</b>給人穩重、可靠的印象；<b>圓形</b>圓融、討喜、脾氣好；<b>三角形</b>有攻擊性、不穩定。</li>
+              <li>先決定大形狀，再處理五官與服裝細節。</li>
+              <li>概念源自動畫的 bouncing ball：角色像球一樣能壓縮與拉長，頭、身、四肢才會連得自然。</li>
+            </ul>
+          </div>
+          <div>
+            <h4>案例賞析</h4>
+            <ul class="keys">
+              <li>《阿拉丁》：蘇丹王＝圓形（隨和）、茉莉＝三角形＋曲線、賈方＝尖銳三角形（危險）、精靈＝圓形收縮（逗趣）。</li>
+              <li>動物：鬥牛犬＝圓、瘦長犬＝方、迷你犬＝三角；獅子用方形顯威嚴、三角形顯俏皮、圓形顯憨厚。</li>
+              <li>《三隻小豬》：三兄弟分別對應圓、三角、方；大野狼混合三種形狀，表現複雜不安分的個性。</li>
+            </ul>
+          </div>
+          <div class="full">
+            <h4>課堂練習</h4>
+            <ol class="steps">
+              <li>畫出圓形、三角形、方形，直接把五官「塞」進形狀裡，不要從眼睛細節開始。</li>
+              <li>（進階）畫面塞滿不規則形狀，再想辦法把角色塞進去。</li>
+              <li>（全身）用同一套形狀邏輯思考頭與身體，避免「頭身不搭」。</li>
+            </ol>
+            <div class="hw"><b>作業｜動物形狀設計</b>　用方、圓、三角（或組合）設計至少 1 種動物角色，讓差異一眼看出，而不是靠上色或花紋。A4、200dpi，右下角標學號＋姓名。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="unit rv" id="u02">
+        <summary><span class="wk">WEEK 03<b>02</b></span><h3>比例與臉部表情變化<small>Proportion &amp; Expression</small></h3></summary>
+        <div class="ubody">
+          <div>
+            <h4>重點</h4>
+            <ul class="keys">
+              <li><b>頭身比</b>越低（頭大身小）越可愛童趣，越高越寫實成熟。</li>
+              <li><b>五官配置</b>（眼、鼻、嘴的位置與大小）決定角色的表情基調：天真、銳利或溫和。</li>
+              <li>情緒改變時，眉、眼、嘴的<b>相對位置</b>也會微調，不只是形狀改變。</li>
+              <li>五官詞庫：眉毛 V 字／八字／一字／不對稱；眼睛睜、瞪、瞇、翻白眼；嘴巴張合、吐舌。</li>
+            </ul>
+          </div>
+          <div>
+            <h4>五官比例調整表</h4>
+            <table class="ratio">
+              <thead><tr><th>項目</th><th>拉近／縮短</th><th>拉遠／拉長</th></tr></thead>
+              <tbody>
+                <tr><td style="font-family:var(--serif);font-size:14px">眉眼間距</td><td>深邃、成熟、具攻擊性</td><td>無辜、幼態、呆萌</td></tr>
+                <tr><td style="font-family:var(--serif);font-size:14px">眼距</td><td>精明、敏銳（窄）</td><td>天真、疏離、非人感（寬）</td></tr>
+                <tr><td style="font-family:var(--serif);font-size:14px">人中長度</td><td>幼態、動漫感</td><td>成熟、老人感、喜劇效果</td></tr>
+                <tr><td style="font-family:var(--serif);font-size:14px">五官集中度</td><td>逗趣或嚴肅（向中心）</td><td>臉大、年幼、放鬆（向外）</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="full">
+            <h4>課堂練習</h4>
+            <ol class="steps">
+              <li>設定一個臉型，畫出 3 種不同五官比例。</li>
+              <li>同一臉型，畫出幼童、少年、老人 3 個年齡層的臉形與五官。</li>
+              <li>為角色設計 3 種頭身版本（可愛／中間值／寫實），再選一個版本畫開心、生氣、驚訝、難過 4 種表情。</li>
+            </ol>
+            <div class="tip"><b>卡關兩步驟</b>　先畫「有點」程度的表情，掌握最細微的五官變化；再依強度加深。畫不出來就找正臉參考，拆解五官公式後填回作品。互換作品、遮住標籤盲猜表情，猜不出來代表公式還不夠清楚。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="unit rv" id="u03">
+        <summary><span class="wk">WEEK 04<b>03</b></span><h3>五官與姿態<small>Facial Features &amp; Gesture</small></h3></summary>
+        <div class="ubody">
+          <div>
+            <h4>整臉建構與五官</h4>
+            <ol class="steps">
+              <li>球體頭骨＋壓扁側面。</li>
+              <li>中心線與眉線隨視角（俯視／平視／仰視）移動。</li>
+              <li>五官依線索定位：雙眼間距約一眼寬；鼻子由眉線與中心線定位；嘴巴在鼻子到下巴中點；耳朵上緣對齊眼線、下緣對齊鼻基準。</li>
+            </ol>
+            <ul class="keys">
+              <li>眼睛拆到單顆眼球（球體）來想視角；近眼定基準，遠眼壓扁、瞳孔內推。</li>
+              <li>鼻子：三角形範圍＋球體或心形鼻頭＋矩形鼻樑＋弓形鼻孔；近側線條肯定、遠側輕淡。</li>
+              <li><b>可愛感公式</b>：五官整體壓縮、間距縮短、睫毛加粗加深。</li>
+            </ul>
+          </div>
+          <div>
+            <h4>簡化與姿態</h4>
+            <ul class="keys">
+              <li>動漫鼻常用一條直線＋陰影；西式卡通用十字組合。簡化後每條線仍對應真實結構。</li>
+              <li>性格決定站姿：內向角色重心內收、肩微縮；自信角色重心居中、抬頭挺胸；調皮角色重心偏移、姿態不對稱。</li>
+              <li>比較「立正」和「單腳重心站」：肩線、髖線的傾斜會傳達情緒。</li>
+              <li><b>剪影測試</b>：拿掉五官與服裝細節，只留剪影，仍要一眼看出動作與個性。</li>
+            </ul>
+          </div>
+          <div class="full">
+            <h4>課堂練習</h4>
+            <ol class="steps">
+              <li>畫 6 個不同角度的頭像：先定頭型、臉型與臉部線，再畫五官。</li>
+              <li>選一個角色，設定個性與世界觀，畫出完整臉部骨架；再設計一個標誌性站姿，標出重心、肩線與髖線方向。</li>
+            </ol>
+          </div>
+        </div>
+      </details>
+
+      <details class="unit rv" id="u04">
+        <summary><span class="wk">WEEK 05<b>04</b></span><h3>人物姿態速寫<small>Pose &amp; Gesture Drawing</small></h3></summary>
+        <div class="ubody">
+          <div>
+            <h4>建構順序</h4>
+            <ol class="steps">
+              <li>頭（圓＋V 字下顎）。</li>
+              <li>脊柱動態線。</li>
+              <li>胸廓與骨盆橢圓。</li>
+              <li>四肢線條，找重心與支撐腿。</li>
+              <li>加體積，手腳先用三角形帶過。</li>
+            </ol>
+            <ul class="keys">
+              <li>速寫不是成品，是每張人物畫的「鷹架」。</li>
+              <li>常見錯誤：描輪廓而不是建構、太早摳細節、下筆畏縮畫出短碎線。</li>
+              <li>方盒與圓柱：人物放進透明方盒，頭、軀幹、腿各占一層；四肢是圓柱。</li>
+            </ul>
+          </div>
+          <div>
+            <h4>多視角</h4>
+            <ul class="keys">
+              <li><b>正面</b>：頭頂到軀幹底、軀幹底到腳底約等長；肘部對齊肋骨底。</li>
+              <li><b>仰視</b>：頭被身體遮住而顯小，腿向臀部匯聚。</li>
+              <li><b>三分之四</b>：想像人站在傾倒的板子上；近大遠小，後側四肢被前方重疊。</li>
+              <li><b>俯視</b>：長方形畫對角線找中心再四等分；頭特別圓大。</li>
+              <li><b>藝術許可</b>：刻意放大拳頭或手臂可以，但要有意圖，說得出理由。</li>
+            </ul>
+          </div>
+          <div class="full">
+            <h4>課堂練習</h4>
+            <ol class="steps">
+              <li>暖身：靜止站姿 ×3，只畫頭圓、脊柱線、胸盆橢圓與火柴人。</li>
+              <li>計時速寫：2 分鐘 ×5，長線、少線、不描輪廓（太趕就從 3 分鐘起）。</li>
+              <li>視角練習：同一姿勢放進方盒，畫正面、三分之四、仰視或俯視各一張。</li>
+              <li>角色化：挑一張鷹架加上體積、手腳與五官，標出重心與支撐腿。</li>
+            </ol>
+            <div class="hw"><b>作業</b>　以上週兩項競賽主題擇一，構思想傳達的意象或氛圍，設計主角個性並作為畫面主題。課後每天 3–5 張 2 分鐘參考速寫。</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="unit rv" id="u05">
+        <summary><span class="wk">WEEK 11<b>05</b></span><h3>動起來的角色<small>Proportion, Gesture &amp; Hands</small></h3></summary>
+        <div class="ubody">
+          <div>
+            <h4>比例與動勢</h4>
+            <ul class="keys">
+              <li>比例是起稿的量尺，不是規定。透視縮短時，不能直接比較畫面上的長度。</li>
+              <li>先畫方向，再畫身體：動勢線與重心讓角色站得住、動得起來。</li>
+              <li>速寫三關：30 秒 → 1 分鐘 → 3 分鐘。</li>
+            </ul>
+            <h4>手勢：角色的第二張臉</h4>
+            <ul class="keys">
+              <li>先畫手套，再分手指。</li>
+              <li>6 種基本手勢：放鬆、握拳、張開、指向、抓握、招手。</li>
+            </ul>
+          </div>
+          <div>
+            <h4>課堂練習</h4>
+            <ol class="steps">
+              <li>3 個不同角度的手勢，如剪刀（正面）、石頭（側面）、布（掌心朝天張開）。</li>
+              <li>2 個拿取物件的手勢，角度不同，如握筆、拿咖啡。</li>
+            </ol>
+            <h4>應用｜「我沒事」角色表演</h4>
+            <ul class="keys">
+              <li>必做：真正平靜、勉強逞強、說謊。</li>
+              <li>選做：生氣卻壓抑、害怕、傷心。</li>
+              <li>不寫對話，只用姿勢與手勢；遮住標籤讓同學盲猜。</li>
+            </ul>
+          </div>
+          <div class="full">
+            <div class="hw"><b>作業</b>　「我沒事」必做 3 張＋6 種手勢各 2 張。</div>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ LESSON 02 (interactive proportion) ============ -->
+<section id="proportion" class="grain">
+  <div class="wrap">
+    <div class="sh rv">
+      <h2>LESSON 02<small>比例・頭身互動圖</small></h2>
+      <div>
+        <p class="lead">畫人物最常見的問題，是「怪怪的但說不出哪裡怪」。原因多半出在比例。這個單元用「頭的長度」當作量尺，先建立全身的骨架位置，再談性別與年齡的差異。拖動左邊的滑桿，看看同一個角色從 2 頭身到 8 頭身會怎麼變。第 3 週的頭身與臉部比例、第 11 週的「比例是量尺」都可以拿這張圖對照。</p>
+      </div>
+    </div>
+
+    <div class="lab">
+      <div class="stage rv" aria-label="頭身比例互動示意">
+        <svg id="fig" viewBox="0 0 420 560" role="img" aria-labelledby="figcap"><title id="figcap">頭身比例示意圖</title></svg>
+        <div class="ctrl">
+          <label>頭身 <input id="heads" type="range" min="2" max="8" step="0.5" value="7"></label>
+          <span class="readout" id="readout">7<em>頭身</em></span>
+          <span class="seg" role="group" aria-label="體型">
+            <button type="button" data-sex="m" aria-pressed="true">男性</button>
+            <button type="button" data-sex="f" aria-pressed="false">女性</button>
+          </span>
+        </div>
+        <p class="type" id="typeNote"></p>
+      </div>
+
+      <div class="notes">
+        <h3 class="rv"><i>a</i>頭身與常見用途</h3>
+        <table class="ratio rv">
+          <thead><tr><th>頭身</th><th>常見用途</th><th>造型重點</th></tr></thead>
+          <tbody>
+            <tr><td>2–2.5</td><td>Q 版、貼圖、吉祥物</td><td>頭大、四肢短，手腳簡化成圓柱或圓頭</td></tr>
+            <tr><td>3–4</td><td>兒童、可愛系、手遊小人</td><td>身體可分出軀幹與腿，表情是重點</td></tr>
+            <tr><td>5–6</td><td>少年少女、日系動畫</td><td>腿開始變長，腰與肩的位置要清楚</td></tr>
+            <tr><td>7–7.5</td><td>寫實成人</td><td>接近真人平均，適合作為基準練習</td></tr>
+            <tr><td>8 以上</td><td>英雄、時尚插畫、模特兒</td><td>拉長腿與脖子，顯得帥氣修長</td></tr>
+          </tbody>
+        </table>
+
+        <h3 class="rv"><i>b</i>全身的關鍵位置（以 8 頭身為例）</h3>
+        <ul class="keys rv">
+          <li>身體的<b>中心點</b>大約落在恥骨，也就是第 4 頭的位置；上半身與下半身約各一半。</li>
+          <li><b>肩寬</b>男性約 2 個頭寬，女性較窄，約 1.5–1.7 個頭寬；臀部則是女性相對較寬。</li>
+          <li>手臂自然下垂時，<b>手肘</b>約在腰（肚臍）高度，<b>手腕</b>約在胯下高度，指尖到大腿中段。</li>
+          <li><b>膝蓋</b>約在第 6 頭，剛好是胯下到腳底的一半。</li>
+          <li>手掌長度約等於臉（下巴到髮際線），腳掌長度約等於一個頭長。</li>
+        </ul>
+
+        <h3 class="rv"><i>c</i>四步驟建立人形</h3>
+        <ol class="steps rv">
+          <li>決定總高度與頭身數，畫出等分的水平格線。</li>
+          <li>用三個塊面定位：頭、胸廓（肩到肋骨）、骨盆（腰到胯下）。</li>
+          <li>畫一條通過三個塊面的脊椎線，再接上四肢的骨架線，標出肘、腕、膝、踝。</li>
+          <li>沿著骨架長出肌肉與外輪廓，最後才加上衣服與細節。</li>
+        </ol>
+
+        <h3 class="rv"><i>d</i>年齡與角度</h3>
+        <p class="rv">年紀越小，頭佔全身的比例越大：嬰兒約 4 頭身，幼兒約 5 頭身，國中生約 6 頭身，成人約 7–7.5 頭身。從俯視或仰視角度看人物時，靠近鏡頭的部位會變大，遠的部位縮短，此時比例要配合透視調整，不能硬套正面數字。</p>
+
+        <div class="tip rv"><b>自我檢查</b>　比例只是參考值，不是公式。畫完後把圖左右翻轉、或用手機拍下縮小來看；也可以對照自己的身體：手垂下時，手腕是不是在胯下附近？</div>
+        <p class="src rv">延伸閱讀：<a href="https://sanaimiyuki.com/jintai-hiritsu-5376.html" target="_blank" rel="noopener">人体比率の描き方（日文）</a>：以圖解說明各部位比例、男女與年齡差異，以及角度對比例的影響。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCHEDULE ============ -->
+<section id="schedule" class="grain">
+  <div class="wrap">
+    <div class="sh rv">
+      <h2>SCHEDULE<small>課程進度（暫定）</small></h2>
+      <p class="lead">每週上課前請先看當週單元內容。標黃色的是參訪、期中、業師與期末等特別週；「本週」標籤會依日期自動移動。進度會依課堂狀況微調，以課堂公告為準。</p>
+    </div>
+    <ul class="sched rv" id="sched" style="margin-top:56px"></ul>
+  </div>
+</section>
+
+<!-- ============ TOOLS ============ -->
+<section id="tools" class="grain">
+  <div class="wrap">
+    <div class="sh rv">
+      <h2>TOOLS<small>練習工具</small></h2>
+      <p class="lead">找不到動作參考時，先別靠想像硬畫。這幾個免費工具可以直接在瀏覽器裡轉動模型、找姿勢，練速寫或當作構圖底稿。</p>
+    </div>
+    <div class="tools">
+      <a class="tool rv" href="https://www.posemaniacs.com/zh-Hans/learn" target="_blank" rel="noopener">
+        <span class="k">POSE REFERENCE</span>
+        <h3>POSEMANIACS<small>3D 姿勢參考與教學</small></h3>
+        <p>免費的 3D 人體姿勢參考網站，另有繪畫學習專區，整理人體、姿勢、角色設計與上色的課程與文章。</p>
+        <ul><li>課前：看「人體與姿勢」相關文章</li><li>練習：選一個姿勢做 1 分鐘速寫</li></ul>
+        <span class="go">OPEN →</span>
+      </a>
+      <a class="tool rv" href="https://webapp.magicposer.com/" target="_blank" rel="noopener">
+        <span class="k">POSE TOOL</span>
+        <h3>Magic Poser<small>網頁版人偶擺姿勢</small></h3>
+        <p>在瀏覽器中拖動 3D 人偶的關節，自訂姿勢、鏡頭角度與光源，適合做三視圖和特殊角度的參考。</p>
+        <ul><li>三視圖：同一姿勢轉正面、側面、背面</li><li>透視：練習俯視與仰視</li></ul>
+        <span class="go">OPEN →</span>
+      </a>
+      <a class="tool rv" href="https://sanaimiyuki.com/jintai-hiritsu-5376.html" target="_blank" rel="noopener">
+        <span class="k">READING</span>
+        <h3>人体比率の描き方<small>人體比例圖解（日文）</small></h3>
+        <p>用大量圖解說明全身、上半身、手臂與腿的比例，以及性別、年齡和角度帶來的差異。可搭配 LESSON 02 互動圖閱讀。</p>
+        <ul><li>看圖就能懂，日文不熟也沒關係</li><li>搭配本頁互動頭身圖對照</li></ul>
+        <span class="go">OPEN →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer id="contact" class="grain">
+  <div class="wrap">
+    <div class="row">
+      <h2>CONTACT<small>課程聯絡</small></h2>
+      <dl>
+        <dt>COURSE</dt><dd>角色造型設計｜國立臺北商業大學 數位多媒體設計系</dd>
+        <dt>MAIL</dt><dd><a href="mailto:bluerain@ntut.edu.tw">bluerain@ntut.edu.tw</a></dd>
+        <dt>MORE</dt><dd><a href="../">其他教學網站</a>　·　<a href="https://bluerainc.github.io/NTUB/">NTUB 系上網站</a></dd>
+      </dl>
+    </div>
+    <p class="copy">© BLUE RAIN · CHARACTER DESIGN COURSE · NTUB DMD</p>
+  </div>
 </footer>
 
-<nav id="menu" aria-label="目錄選單" aria-hidden="true">
-  <button class="close" id="closeMenu">CLOSE ✕</button>
-  <ol>
-    <li><button data-go="0"><em>00</em>Cover<span>封面</span></button></li>
-    <li><button data-go="2"><em>01</em>Character Design<span>角色造型設計</span></button></li>
-    <li><button data-go="3"><em>02</em>Video Post-production<span>影片後製作</span></button></li>
-    <li><button data-go="4"><em>03</em>Intro to Design<span>設計概論</span></button></li>
-    <li><button data-go="5"><em>—</em>Colophon<span>封底・聯絡</span></button></li>
-  </ol>
+<!-- ============ NAV ============ -->
+<nav class="nav" aria-label="主選單">
+  <a class="logo" href="#top" aria-label="回到頂部">
+    <svg viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" fill="#291c16"/><circle cx="17" cy="9.5" r="4" fill="#e8ae3c"/><path d="M11 15h12l-1.5 8h-9z M13 23l-1 8 M21 23l1 8" stroke="#e8ae3c" stroke-width="2.2" fill="#e8ae3c" stroke-linecap="round"/></svg>
+    <span><b>CHARA</b><br>角色造型設計</span>
+  </a>
+  <ul>
+    <li><a href="#about">ABOUT</a></li>
+    <li><a href="#lessons">LESSONS</a></li>
+    <li><a href="#notes">NOTES</a></li>
+    <li><a href="#proportion">PROPORTION</a></li>
+    <li><a href="#schedule">SCHEDULE</a></li>
+    <li><a href="#tools">TOOLS</a></li>
+  </ul>
+  <a class="home" href="../">教學網站首頁</a>
 </nav>
 
 <script>
+/* ---------- lesson cards ---------- */
+var LESSONS=[
+  {n:"01",t:"造型語言",tag:"SHAPE",wk:"W2",out:"動物形狀設計 1 種以上（A4／200dpi）",live:"#u01",ic:"shape"},
+  {n:"02",t:"比例與臉部表情變化",tag:"PROPORTION",wk:"W3",out:"3 種五官比例、3 個年齡層、4 種表情",live:"#u02",ic:"heads"},
+  {n:"03",t:"五官與姿態",tag:"FACE",wk:"W4",out:"6 個頭像角度＋標誌性站姿",live:"#u03",ic:"face"},
+  {n:"04",t:"人物姿態速寫",tag:"POSE",wk:"W5",out:"2 分鐘速寫 ×5＋角色化姿態",live:"#u04",ic:"pose"},
+  {n:"05",t:"動起來的角色",tag:"GESTURE",wk:"W11",out:"「我沒事」3 張＋6 種手勢各 2 張",live:"#u05",ic:"hand"},
+  {n:"06",t:"角色上色：眼睛與頭髮",tag:"COLOR",wk:"W13（暫定）",out:"角色上色練習",ic:"color"},
+  {n:"07",t:"服飾、道具與細節",tag:"COSTUME",wk:"W14",out:"2 套服裝變化＋1 件隨身道具",ic:"costume"},
+  {n:"08",t:"世界觀與品牌延伸",tag:"WORLD",wk:"W15",out:"代表場景或物件＋風格字體／周邊版面",ic:"turn"},
+  {n:"09",t:"角色設定集與作品集",tag:"MODEL SHEET",wk:"W16–18",out:"完整角色設定集與設計歷程（期末）",ic:"sheet"}
+];
+var IC={
+ heads:'<g stroke="#291c16" stroke-width="3" fill="none" stroke-linecap="round"><circle cx="30" cy="22" r="10"/><path d="M30 32v26M18 40h24M30 58l-8 30M30 58l8 30"/><circle cx="72" cy="44" r="16"/><path d="M72 60v12M62 66h20M72 72l-6 16M72 72l6 16"/></g><path d="M8 12h4M8 88h4" stroke="#e8ae3c" stroke-width="4"/>',
+ pose:'<path d="M20 86 C34 60 46 40 74 14" stroke="#e8ae3c" stroke-width="6" fill="none" stroke-linecap="round"/><g stroke="#291c16" stroke-width="3" fill="none" stroke-linecap="round"><circle cx="70" cy="22" r="8"/><path d="M64 30 L46 54 L28 84 M46 54 L66 66 L80 84 M58 40 L80 46 M58 40 L36 30"/></g>',
+ shape:'<rect x="10" y="40" width="22" height="48" fill="#291c16"/><circle cx="21" cy="28" r="11" fill="#291c16"/><path d="M50 88 L62 30 L74 88Z" fill="#291c16"/><circle cx="62" cy="22" r="8" fill="#291c16"/><ellipse cx="88" cy="70" rx="12" ry="18" fill="#e8ae3c"/><circle cx="88" cy="42" r="9" fill="#e8ae3c"/>',
+ face:'<g stroke="#291c16" stroke-width="3" fill="none" stroke-linecap="round"><circle cx="30" cy="34" r="20"/><path d="M22 30h2M36 30h2M22 42c4 5 12 5 16 0"/><circle cx="70" cy="66" r="20"/><path d="M60 60l6 3M80 60l-6 3M62 76c4-5 12-5 16 0"/></g>',
+ costume:'<path d="M30 20 L50 30 L70 20 L84 40 L74 46 L70 88 L30 88 L26 46 L16 40Z" fill="#e8ae3c" stroke="#291c16" stroke-width="3" stroke-linejoin="round"/><path d="M50 30 v58" stroke="#291c16" stroke-width="2"/>',
+ color:'<circle cx="34" cy="38" r="20" fill="#e8ae3c"/><circle cx="64" cy="38" r="20" fill="#291c16" opacity=".85"/><circle cx="49" cy="64" r="20" fill="#c9b48c" opacity=".9"/>',
+ turn:'<g fill="#291c16"><circle cx="18" cy="26" r="8"/><rect x="11" y="36" width="14" height="50" rx="5"/><circle cx="50" cy="26" r="8"/><rect x="45" y="36" width="9" height="50" rx="4"/><circle cx="82" cy="26" r="8"/><rect x="75" y="36" width="14" height="50" rx="5"/></g><path d="M8 94h84" stroke="#e8ae3c" stroke-width="3"/>',
+ hand:'<g stroke="#291c16" stroke-width="3" fill="#e8ae3c" stroke-linejoin="round" stroke-linecap="round"><path d="M30 88 L28 52 C28 46 36 46 36 52 L36 30 C36 24 44 24 44 30 L44 22 C44 16 52 16 52 22 L52 28 C52 22 60 22 60 28 L60 34 C60 28 68 28 68 34 L68 62 C68 76 60 88 50 88Z"/></g><path d="M14 40 C10 30 14 20 22 16" stroke="#291c16" stroke-width="2.5" fill="none" stroke-linecap="round"/>',
+ sheet:'<rect x="14" y="12" width="72" height="80" fill="#fbf7ef" stroke="#291c16" stroke-width="3"/><circle cx="34" cy="38" r="9" fill="#e8ae3c"/><path d="M28 50h12v26H28z" fill="#291c16"/><path d="M52 32h24M52 42h24M52 52h18M52 66h24M52 76h14" stroke="#291c16" stroke-width="2.5"/>'
+};
+document.getElementById("cardlist").innerHTML=LESSONS.map(function(l){
+  var tag=l.live?'a':'div', href=l.live?' href="'+l.live+'"':'';
+  return '<'+tag+' class="card rv'+(l.live?' live':'')+'"'+href+'><div><span class="tag"># '+l.tag+'</span><h3>'+l.n+'　'+l.t+(l.live?'<span class="pill on">已上課</span>':'<span class="pill">準備中</span>')+'</h3><dl><dt>週次</dt><dd>'+l.wk+'</dd><dt>產出</dt><dd>'+l.out+'</dd></dl></div><div class="thumb"><svg viewBox="0 0 100 100" aria-hidden="true">'+IC[l.ic]+'</svg></div></'+tag+'>';
+}).join("");
+
+document.addEventListener("click",function(e){
+  var a=e.target.closest('a[href^="#u0"]'); if(!a)return;
+  var d=document.querySelector(a.getAttribute("href")); if(d)d.open=true;
+});
+if(/^#u0/.test(location.hash)){var d0=document.querySelector(location.hash);if(d0)d0.open=true;}
+
+/* ---------- schedule ---------- */
+/* [週次, 日期, 主題, 內容, 標籤, 特別週?, 單元連結] */
+var WEEKS=[
+ ["1","9/10","課程說明","教學目標、18 週課程地圖、製作方向與評量方式","INTRO"],
+ ["2","9/17","造型語言 Shape Language","方、圓、三角形的性格；從大形狀出發設計動物角色","SHAPE",0,"#u01"],
+ ["3","9/24","比例與臉部表情變化","頭身比、五官配置與四種基本表情","PROPORTION",0,"#u02"],
+ ["4","10/1","五官與姿態","整臉建構、五官簡化、標誌性站姿與剪影測試","FACE",0,"#u03"],
+ ["5","10/8","人物姿態速寫","建構順序、方盒與圓柱、多視角人體、2 分鐘速寫","POSE",0,"#u04"],
+ ["6","10/15","業界參訪","暴風數位股份有限公司、安東青創基地——了解創業啟動","VISIT",1],
+ ["7","10/22","自主練習週","老師公假；持續每日姿態速寫，整理期中角色草稿","PRACTICE"],
+ ["8","10/29","綜合應用與期中準備","綜合應用造型語言，期中簡報排練與個別指導","REVIEW"],
+ ["9","11/5","期中報告","故事概念、造型語言、比例與姿態成果發表","MIDTERM",1],
+ ["10","11/12","角色性格與表情設計","表情與肢體如何傳達個性；表情辨識度測試","EXPRESSION"],
+ ["11","11/19","動起來的角色","比例量尺、動勢與重心、手勢、「我沒事」角色表演","GESTURE",0,"#u05"],
+ ["12","11/26","業師演講｜江明諺","3D 原型師／玩具設計師：從 2D 造型、3D 建模到玩具設計的職涯歷程（13:30–16:20）","TALK",1],
+ ["13","12/3","角色上色：眼睛與頭髮","上色流程與眼睛、頭髮的質感表現（時間待確認）","COLOR"],
+ ["14","12/10","服飾、道具與細節修飾","服裝道具作為敘事延伸；材質、光影與線條層次","COSTUME"],
+ ["15","12/17","世界觀與品牌延伸","代表場景或物件、風格字體與周邊商品版面","WORLD"],
+ ["16","12/24","版面規劃與設計歷程","角色設定集與作品集排版、版面互評","SHEET"],
+ ["17","12/31","成果發表排練","全班演練、時間控管與最後修改","REHEARSAL"],
+ ["18","1/7","期末成果發表","完整角色設計歷程與作品集發表","FINAL",1]
+];
 (function(){
-  var track=document.getElementById("track"), spreads=[].slice.call(track.children), N=spreads.length, cur=0, lock=false;
-  var count=document.getElementById("count"), chap=document.getElementById("chapname"), dots=document.getElementById("dots");
-  var prev=document.getElementById("prev"), next=document.getElementById("next"), menu=document.getElementById("menu"), openBtn=document.getElementById("openMenu");
-  spreads.forEach(function(s,i){var b=document.createElement("button");b.setAttribute("role","tab");b.setAttribute("aria-label",s.dataset.name);b.addEventListener("click",function(){go(i)});dots.appendChild(b)});
-  function pad(n){return (n<10?"0":"")+n}
-  function go(i){
-    i=Math.max(0,Math.min(N-1,i)); if(i===cur&&track.style.transform)return;
-    cur=i; track.style.transform="translateX("+(-100*i)+"vw)";
-    spreads.forEach(function(s,k){s.classList.toggle("on",k===i);s.setAttribute("aria-hidden",k!==i)});
-    count.textContent=pad(i+1)+" / "+pad(N); chap.textContent=spreads[i].dataset.name;
-    [].forEach.call(dots.children,function(d,k){d.classList.toggle("on",k===i);d.setAttribute("aria-selected",k===i)});
-    prev.disabled=i===0; next.disabled=i===N-1;
-    document.body.dataset.dark=spreads[i].dataset.dark||"0";
-    try{history.replaceState(null,"","#p"+(i+1))}catch(e){}
-    lock=true; setTimeout(function(){lock=false},900);
+  var now=new Date(), y0=now.getMonth()>=7?now.getFullYear():now.getFullYear()-1, cur=-1;
+  function dt(md){var p=md.split("/"),m=+p[0];return new Date(m>=8?y0:y0+1,m-1,+p[1],23,59)}
+  WEEKS.forEach(function(w,i){if(cur<0&&dt(w[1])>=now)cur=i});
+  document.getElementById("sched").innerHTML=WEEKS.map(function(w,i){
+    var c=[]; if(w[5])c.push("mark"); if(i===cur)c.push("now"); else if(cur<0||i<cur)c.push("past");
+    var t=(w[6]?'<a href="'+w[6]+'">'+w[2]+'</a>':w[2])+(i===cur?'<span class="nowtag">本週</span>':'');
+    return '<li'+(c.length?' class="'+c.join(" ")+'"':'')+'><span class="wk">WEEK<b>'+(w[0].length<2?"0":"")+w[0]+'</b><i>'+w[1]+'</i></span><h3>'+t+'<small>'+w[3]+'</small></h3><span class="k">'+w[4]+'</span></li>';
+  }).join("");
+})();
+
+/* ---------- interactive proportion figure ---------- */
+(function(){
+  var svg=document.getElementById("fig"), slider=document.getElementById("heads"), out=document.getElementById("readout"), note=document.getElementById("typeNote");
+  var sex="m", NS="http://www.w3.org/2000/svg";
+  var TYPES=[[2.5,"Q 版、貼圖、吉祥物"],[3.5,"Q 版角色、可愛系小人"],[4.5,"兒童、可愛系角色"],[5.5,"少年少女、日系動畫"],[6.5,"少年漫畫、青少年"],[7.5,"寫實成人（真人平均約 7–7.5 頭身）"],[9,"英雄、時尚插畫、模特兒"]];
+  function lerp(a,b,t){return a+(b-a)*t}
+  function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e}
+  function draw(){
+    var N=+slider.value, T=(N-2)/6, top=24, bot=536, H=bot-top, u=H/N, cx=168;
+    while(svg.firstChild)svg.removeChild(svg.firstChild);
+    // grid
+    for(var i=0;i<=N+0.001;i+=1){var y=top+i*u;svg.appendChild(el("line",{x1:40,x2:300,y1:y,y2:y,stroke:"#291c16","stroke-width":i===0?1.2:.8,"stroke-dasharray":i===0?"":"3 5",opacity:.45}));if(i<N){var t=el("text",{x:24,y:y+u/2+5,"font-family":"Crimson Pro,serif","font-size":Math.min(18,u*.5),fill:"#291c16","text-anchor":"middle"});t.textContent=i+1;svg.appendChild(t)}}
+    if(N%1){var yb=bot;svg.appendChild(el("line",{x1:40,x2:300,y1:yb,y2:yb,stroke:"#291c16","stroke-width":.8,"stroke-dasharray":"3 5",opacity:.45}))}
+    // landmarks (fractions of body below chin)
+    var chin=top+u, B=bot-chin;
+    var fCrotch=lerp(.5,.43,T), fWaist=fCrotch*lerp(.55,.62,T), fChest=fCrotch*lerp(.28,.31,T), fShoulder=lerp(.04,.045,T);
+    var yS=chin+B*Math.max(fShoulder,.02)+u*.08, yC=chin+B*fChest, yW=chin+B*fWaist, yX=chin+B*fCrotch, yK=yX+(bot-yX)*.5, yA=bot-u*lerp(.12,.1,T);
+    var hw=Math.min(u*lerp(.46,.37,T),64); // half head width
+    var sh=Math.min(u*lerp(.62,1.0,T),62)*(sex==="f"?.84:1); // half shoulder width
+    var hip=Math.min(u*lerp(.5,.72,T),48)*(sex==="f"?1.12:.92);
+    var wst=Math.min(u*lerp(.48,.55,T),40)*(sex==="f"?.78:.9);
+    var g=el("g",{});
+    // body shape
+    var torso="M"+(cx-sh)+" "+yS+" Q"+cx+" "+(yS-u*.12)+" "+(cx+sh)+" "+yS+" L"+(cx+wst)+" "+yW+" L"+(cx+hip)+" "+(yX-u*.2)+" Q"+cx+" "+(yX+u*.12)+" "+(cx-hip)+" "+(yX-u*.2)+" L"+(cx-wst)+" "+yW+"Z";
+    g.appendChild(el("path",{d:torso,fill:"#e8ae3c",stroke:"#291c16","stroke-width":2,"stroke-linejoin":"round"}));
+    // neck
+    g.appendChild(el("line",{x1:cx,y1:chin-2,x2:cx,y2:yS,stroke:"#291c16","stroke-width":Math.max(6,hw*.55),"stroke-linecap":"round"}));
+    // limbs
+    var lw=Math.min(20,Math.max(7,u*lerp(.32,.2,T))), legw=Math.min(26,Math.max(9,u*lerp(.42,.26,T)));
+    var elbowY=yW, wristY=yX+u*.05;
+    [-1,1].forEach(function(s){
+      var sx=cx+s*sh*.92, ex=cx+s*(sh+Math.min(u*.12,16)), wx=cx+s*(sh+Math.min(u*.16,22));
+      g.appendChild(el("path",{d:"M"+sx+" "+(yS+lw*.3)+" L"+ex+" "+elbowY+" L"+wx+" "+wristY,fill:"none",stroke:"#291c16","stroke-width":lw,"stroke-linecap":"round","stroke-linejoin":"round"}));
+      g.appendChild(el("circle",{cx:wx,cy:wristY+u*.18,r:Math.min(14,Math.max(4,u*.16)),fill:"#f4ecdc",stroke:"#291c16","stroke-width":2}));
+      var hx=cx+s*hip*.55, kx=cx+s*hip*.5, ax=cx+s*hip*.45;
+      g.appendChild(el("path",{d:"M"+hx+" "+(yX-u*.15)+" L"+kx+" "+yK+" L"+ax+" "+yA,fill:"none",stroke:"#291c16","stroke-width":legw,"stroke-linecap":"round","stroke-linejoin":"round"}));
+      g.appendChild(el("ellipse",{cx:ax+s*Math.min(u*.14,12),cy:bot-Math.min(8,Math.max(4,u*.08)),rx:Math.min(26,Math.max(8,u*.3)),ry:Math.min(9,Math.max(4,u*.09)),fill:"#291c16"}));
+      [ [ex,elbowY],[kx,yK] ].forEach(function(p){g.appendChild(el("circle",{cx:p[0],cy:p[1],r:Math.max(3,lw*.38),fill:"#f4ecdc"}))});
+    });
+    // head
+    g.appendChild(el("ellipse",{cx:cx,cy:top+u*.5,rx:hw,ry:u*.5,fill:"#f4ecdc",stroke:"#291c16","stroke-width":2}));
+    g.appendChild(el("path",{d:"M"+(cx-hw)+" "+(top+u*.48)+" C"+(cx-hw)+" "+(top-u*.02)+" "+(cx+hw)+" "+(top-u*.02)+" "+(cx+hw)+" "+(top+u*.48)+" C"+(cx+hw*.4)+" "+(top+u*.22)+" "+(cx-hw*.5)+" "+(top+u*.3)+" "+(cx-hw)+" "+(top+u*.48)+"Z",fill:"#291c16"}));
+    svg.appendChild(g);
+    // labels
+    var L=[["頭頂",top],["下巴",chin],["肩",yS],["腰・手肘",yW],["胯下・手腕",yX],["膝",yK],["腳底",bot]];
+    var last=-99;
+    L.forEach(function(l){
+      var y=l[1]; if(y-last<15) return; last=y;
+      svg.appendChild(el("line",{x1:300,x2:318,y1:y,y2:y,stroke:"#291c16","stroke-width":1}));
+      var t=el("text",{x:324,y:y+4.5,"font-family":"Noto Serif TC,serif","font-size":12.5,fill:"#291c16","letter-spacing":"1"});t.textContent=l[0];svg.appendChild(t);
+    });
+    out.innerHTML=(N%1?N.toFixed(1):N)+"<em>頭身</em>";
+    for(var j=0;j<TYPES.length;j++){if(N<=TYPES[j][0]){note.textContent="常見用途："+TYPES[j][1];break}}
+    slider.setAttribute("aria-valuetext",N+" 頭身");
   }
-  document.querySelectorAll("[data-go]").forEach(function(b){b.addEventListener("click",function(e){e.preventDefault();closeMenu();go(+b.dataset.go)})});
-  prev.addEventListener("click",function(){go(cur-1)}); next.addEventListener("click",function(){go(cur+1)});
-  // wheel
-  var acc=0;
-  window.addEventListener("wheel",function(e){
-    if(menu.classList.contains("open"))return;
-    e.preventDefault(); if(lock)return;
-    acc+=Math.abs(e.deltaY)>Math.abs(e.deltaX)?e.deltaY:e.deltaX;
-    if(Math.abs(acc)>40){go(cur+(acc>0?1:-1));acc=0}
-  },{passive:false});
-  // keys
-  window.addEventListener("keydown",function(e){
-    if(e.key==="Escape")return closeMenu();
-    if(menu.classList.contains("open"))return;
-    if(["ArrowRight","PageDown"," "].indexOf(e.key)>-1){e.preventDefault();go(cur+1)}
-    if(["ArrowLeft","PageUp"].indexOf(e.key)>-1){e.preventDefault();go(cur-1)}
-    if(e.key==="Home")go(0); if(e.key==="End")go(N-1);
-  });
-  // touch
-  var sx=0,sy=0;
-  window.addEventListener("touchstart",function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
-  window.addEventListener("touchend",function(e){var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){go(cur+(dx<0?1:-1))}},{passive:true});
-  // parallax
-  var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if(!reduce) window.addEventListener("mousemove",function(e){
-    var x=e.clientX/innerWidth-.5, y=e.clientY/innerHeight-.5;
-    spreads[cur].querySelectorAll(".layer").forEach(function(l){var d=+l.dataset.depth;l.style.transform="translate("+(-x*d)+"px,"+(-y*d)+"px)"});
-  });
-  // menu
-  function openMenu(){menu.classList.add("open");menu.setAttribute("aria-hidden","false");openBtn.setAttribute("aria-expanded","true")}
-  function closeMenu(){menu.classList.remove("open");menu.setAttribute("aria-hidden","true");openBtn.setAttribute("aria-expanded","false")}
-  openBtn.addEventListener("click",openMenu); document.getElementById("closeMenu").addEventListener("click",closeMenu);
-  // mobile: crop cover art to the illustrated area
-  function fitCover(){var small=innerWidth<860;document.querySelectorAll(".cover .layer svg").forEach(function(s){s.setAttribute("viewBox",small?"580 60 880 880":"0 0 1440 900");s.setAttribute("preserveAspectRatio",small?"xMidYMax meet":"xMidYMid slice")})}
-  fitCover(); addEventListener("resize",fitCover);
-  // start
-  var m=/#p(\d+)/.exec(location.hash); track.style.transition="none"; go(m?(+m[1]-1):0);
-  requestAnimationFrame(function(){requestAnimationFrame(function(){track.style.transition=""})});
-  window.addEventListener("load",function(){setTimeout(function(){document.body.classList.add("ready")},900)});
+  slider.addEventListener("input",draw);
+  document.querySelectorAll(".seg button").forEach(function(b){b.addEventListener("click",function(){sex=b.dataset.sex;document.querySelectorAll(".seg button").forEach(function(x){x.setAttribute("aria-pressed",x===b)});draw()})});
+  draw();
+})();
+
+/* ---------- reveal on scroll ---------- */
+(function(){
+  var els=document.querySelectorAll(".rv");
+  if(!("IntersectionObserver" in window)){els.forEach(function(e){e.classList.add("in")});return}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{rootMargin:"0px 0px -8% 0px"});
+  els.forEach(function(e){io.observe(e)});
 })();
 </script>
 </body>
